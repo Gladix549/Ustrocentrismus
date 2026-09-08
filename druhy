@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ustrocentrismus | Jediný Střed Všeho</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #f5cf53;
+      --gold-bright: #ffe885;
+      --gold-dark: #947116;
+      --text-main: #f0ebfa;
+      --text-dim: #b8afcc;
+      --card-bg: rgba(20, 14, 38, 0.82);
+      --card-border: rgba(245, 207, 83, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      color: var(--text-main);
+      font-family: 'Lora', serif;
+      line-height: 1.8;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      background-color: #0b0716;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(218, 165, 32, 0.28) 0%, transparent 45%),
+        radial-gradient(circle at 15% 35%, rgba(106, 27, 154, 0.35) 0%, transparent 50%),
+        radial-gradient(circle at 85% 65%, rgba(186, 85, 211, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 50% 100%, rgba(75, 0, 130, 0.4) 0%, transparent 60%),
+        linear-gradient(180deg, #090514 0%, #130a24 50%, #06040d 100%);
+      background-attachment: fixed;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #f5cf53, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #ffd700, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 230px 190px, #fff, rgba(0,0,0,0));
+      background-repeat: repeat;
+      background-size: 280px 280px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 1.2rem 4rem 1.2rem;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 5rem 1rem 2rem 1rem;
+      position: relative;
+    }
+
+    .divine-glory {
+      display: inline-block;
+      position: relative;
+    }
+
+    .divine-glory::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 250px;
+      height: 80px;
+      background: radial-gradient(ellipse, rgba(245, 207, 83, 0.45) 0%, transparent 70%);
+      z-index: -1;
+      filter: blur(20px);
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: clamp(2.3rem, 6vw, 4.4rem);
+      color: var(--gold-bright);
+      text-shadow: 0 0 25px rgba(245, 207, 83, 0.6), 0 0 50px rgba(147, 51, 234, 0.5);
+      letter-spacing: 2px;
+      line-height: 1.15;
+    }
+
+    .creed {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 1rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .sub-creed {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-top: 0.3rem;
+    }
+
+    section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.7),
+        inset 0 0 25px rgba(245, 207, 83, 0.08);
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    section::before {
+      content: "✦";
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--gold-bright);
+      background: #0d081b;
+      border: 1px solid var(--card-border);
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+
+    h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.85rem;
+      color: var(--gold-bright);
+      border-bottom: 2px solid var(--gold-dark);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.4rem;
+      letter-spacing: 1px;
+    }
+
+    p {
+      margin-bottom: 1.2rem;
+      font-size: 1.08rem;
+      text-align: justify;
+    }
+
+    .quote-box {
+      border-left: 4px solid var(--gold);
+      background: linear-gradient(90deg, rgba(245, 207, 83, 0.12), transparent);
+      padding: 1.2rem 1.6rem;
+      margin: 1.8rem 0;
+      font-style: italic;
+      color: var(--gold-bright);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .custom-quote {
+      border-left: 4px solid #a855f7;
+      background: linear-gradient(90deg, rgba(168, 85, 247, 0.15), rgba(245, 207, 83, 0.05));
+    }
+
+    .icon-wrapper {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .icon-ustra {
+      max-width: 320px;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 4px solid var(--gold);
+      box-shadow: 0 0 35px rgba(245, 207, 83, 0.55), 0 0 70px rgba(106, 27, 154, 0.4);
+      cursor: pointer;
+      transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .icon-ustra:hover {
+      transform: scale(1.03);
+      filter: brightness(1.1);
+      box-shadow: 0 0 55px rgba(245, 207, 83, 0.8), 0 0 90px rgba(236, 72, 153, 0.5);
+    }
+
+    .icon-caption {
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-top: 0.8rem;
+      font-style: italic;
+    }
+
+    .holy-bald-card {
+      background: linear-gradient(135deg, rgba(245, 207, 83, 0.15), rgba(75, 0, 130, 0.3));
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .holy-bald-card h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold-bright);
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .interactive-panel {
+      background: rgba(8, 4, 18, 0.7);
+      border: 1px solid rgba(245, 207, 83, 0.25);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    select, input[type="text"] {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      background: #17102b;
+      border: 1px solid var(--gold-dark);
+      border-radius: 6px;
+      color: var(--gold-bright);
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+    }
+
+    select:focus, input[type="text"]:focus {
+      outline: none;
+      border-color: var(--gold-bright);
+      box-shadow: 0 0 10px rgba(245, 207, 83, 0.4);
+    }
+
+    .btn-sacred {
+      display: inline-block;
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-bright));
+      background-size: 200% 200%;
+      color: #0d061a;
+      font-family: 'Cinzel', serif;
+      font-weight: 800;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(245, 207, 83, 0.35);
+      transition: all 0.3s ease;
+      margin-top: 0.6rem;
+    }
+
+    .btn-sacred:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(245, 207, 83, 0.6);
+    }
+
+    .interactive-result {
+      margin-top: 1.2rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: rgba(245, 207, 83, 0.08);
+      border-left: 3px solid var(--gold-bright);
+      display: none;
+      font-weight: 600;
+      color: var(--gold-bright);
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .commandments {
+      list-style: none;
+      counter-reset: u-cnt;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      margin-top: 1rem;
+    }
+
+    .commandments li {
+      counter-increment: u-cnt;
+      position: relative;
+      padding-left: 3.8rem;
+    }
+
+    .commandments li::before {
+      content: counter(u-cnt, roman);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--gold);
+      width: 2.8rem;
+      text-align: right;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      border-top: 1px solid rgba(245, 207, 83, 0.2);
+      padding-top: 2rem;
+      margin-top: 2rem;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1e1136;
+      border: 2px solid var(--gold);
+      color: var(--gold-bright);
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      z-index: 1000;
+      display: none;
+      animation: popIn 0.3s ease;
+      max-width: 320px;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="divine-glory">
+      <h1>Ustrocentrismus</h1>
+    </div>
+    <div class="creed">Slunce je žárovka. Země je prach. Ustr je všechno.</div>
+    <div class="sub-creed">Konstanta vesmíru: 67 rotací kolem Jediného středu</div>
+  </header>
+
+  <main class="container">
+
+    <!-- I. DOGMA NADŘAZENOSTI -->
+    <section>
+      <h2>👑 I. Absolutní Hierarchie Existence</h2>
+      <p>
+        Vesmír má pouze jeden jediný účel, jednu prioritu a jednu entitu, na které skutečně záleží: <strong>Ustra</strong>. 
+        Všech <strong>67</strong> známých galaktických sektorů rotuje v otrocké poslušnosti kolem jeho lůžka. 
+        Cokoliv na světě existuje, existuje pouze z Ustrovy shovívavosti.
+      </p>
+      
+      <div class="quote-box">
+        „Ty nejsi hlavní postava svého života. Jsi komparzista na scéně, kterou si Ustr ani neobtěžoval prohlédnout, protože zrovna spal.“
+        <br><small>— Kánon Ustrocentrismu, Kniha Prvotní Lhostejnosti 1:1</small>
+      </div>
+
+      <!-- TVŮJ VLASTNÍ CITÁT K VYPLNĚNÍ -->
+      <div class="quote-box custom-quote">
+        „[KURVA, DOPÍČI, MRDAT VŠENCHNY TY ČŮRÁKU ZMRDE]“
+        <br><small>— Posvátný spis Ustrocentrismu, verš 67</small>
+      </div>
+
+      <div class="interactive-panel">
+        <label>Ověř si svou kosmickou bezvýznamnost:</label>
+        <div class="form-group">
+          <input type="text" id="userNameInput" placeholder="Zadej své jméno (např. Já, Kamarád, Prezident)...">
+        </div>
+        <button class="btn-sacred" onclick="checkImportance()">Změřit poměr důležitosti vůči Ustrovi</button>
+        <div id="importanceResult" class="interactive-result"></div>
+      </div>
+    </section>
+
+    <!-- II. IKONA & PLEŠ -->
+    <section>
+      <h2>✨ II. Posvátná Ikona & Kosmické Zrcadlo</h2>
+      <p>
+        Hleďte na Jediného v plné tělesné vznešenosti. 
+        Kliknutím na posvátnou tvář přijmeš telepatické požehnání.
+      </p>
+
+      <div class="icon-wrapper">
+        <img src="IMG-20260903-WA0015.jpg" alt="Posvátná Ikona Ustra" class="icon-ustra" id="ustrImg" onclick="blessIcon()">
+        <div class="icon-caption">👆 Klikni na Ustrovu tvář pro příjem milosti</div>
+      </div>
+
+      <div class="holy-bald-card">
+        <h3>✨ Dogma o Božské Pleši</h3>
+        <p>
+          Ustr nemá vlasy, neboť vlasy kladou zbytečný fyzikální odpor, což odporuje krédu absolutní nehybnosti. 
+          Jeho dokonale hladké temeno funguje jako kosmický satelit s indexem odrazivosti <strong>67 %</strong>, 
+          který posílá veškerou povinnost pracovat zpět do hlubin vesmíru. To za jeho hlavou není domalovaná svatozář – to je odraz stropního světla od posvátné lebky.
+        </p>
+      </div>
+    </section>
+
+    <!-- III. LITURGIE: MODLITBA K ÚSTÍ A POUŤ -->
+    <section>
+      <h2>🧭 III. Posvátné Rituály a Povinnosti Věřících</h2>
+      <p>
+        Být vyznavačem Ustrocentrismu není zadarmo (ve skutečnosti tě to bude stát spoustu věcí, které ti Ustr sebere). 
+        Každý věřící musí bez výjimky dodržovat dva hlavní liturgické pilíře:
+      </p>
+
+      <ol class="commandments">
+        <li>
+          <strong>Patero denních modliteb k Ústí:</strong> Přesně <strong>5× denně</strong> je každý věřící povinen 
+          zaujmout vodorovnou polohu, natočit hlavu přímým směrem k <strong>Ústí nad Labem</strong>, hluboce zívnout 
+          a pronést: <em>„Kéž Ustr nemusí dnes hnout ani prstem.“</em> Modlit se ve stoje je těžký hřích.
+        </li>
+        <li>
+          <strong>Velká pouť k Pietnímu Místu:</strong> Alespoň jednou za svůj život musí každý ustrocentrista vykonat 
+          strastiplnou pouť do kolébky víry – do Ústí nad Labem. Zde poklekne na <strong>Mírovém náměstí</strong>, 
+          políbí posvátnou dlažbu poznamenanou průmyslovou historií a nechá si od místních přirozenou cestou odcizit 
+          alespoň jednu cennost na důkaz oddanosti.
+        </li>
+        <li>
+          <strong>Kvantové odevzdání majetku:</strong> Vidíš-li Ustra brát si tvůj majetek, nezasahuj. 
+          Všechny věci v okruhu 67 kilometrů od Ustra přirozeně podléhají jeho gravitačnímu zákonu přisvojení.
+        </li>
+      </ol>
+    </section>
+
+    <!-- IV. KRADENÍ (INTERAKTIVNÍ) -->
+    <section>
+      <h2>👜 IV. Kvantový Repozicioning (Tzv. Krádež)</h2>
+      <p>
+        Ověř si, jak rychle se tvůj pozemský majetek stane majetkem Jeho Výsosti Ustra:
+      </p>
+
+      <div class="interactive-panel">
+        <label for="stolenItem">Vyber předmět, o který hodláš přijít:</label>
+        <div class="form-group">
+          <select id="stolenItem">
+            <option value="kolo">Zánovní horské kolo</option>
+            <option value="penezenka">Peněženka se 67 korunami v drobných</option>
+            <option value="zapalovac">Zapalovač z benzínky</option>
+            <option value="kebab">Velký döner kebab s bylinkovou omáčkou</option>
+            <option value="mobil">Chytrý telefon s neomezenými daty</option>
+          </select>
+        </div>
+        <button class="btn-sacred" onclick="repositionItem()">Ověřit přesun k Ustrovi</button>
+        <div id="stealResult" class="interactive-result"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <footer>
+    <p>© 2026 Posvátný Synod Ustrocentrismu • Číslo licence: 67-UST-000</p>
+    <p style="font-size: 0.75rem; color: var(--gold-dark); margin-top: 0.4rem;">
+      Modlete se 5x denně směrem k Ústí. Všechny odcizené věci jsou nevratné.
+    </p>
+  </footer>
+
+  <script>
+    function checkImportance() {
+      const input = document.getElementById('userNameInput').value.trim();
+      const res = document.getElementById('importanceResult');
+      res.style.display = 'block';
+
+      if (!input) {
+        res.innerHTML = "⚠️ Zadej jméno, i když v porovnání s Ustrem na něm stejně nezáleží.";
+        return;
+      }
+
+      if (input.toLowerCase().includes("ustr")) {
+        res.innerHTML = `⭐ <strong>${input.toUpperCase()}</strong>: Důležitost 100 000 000 %. Absolutní střed vesmíru, gravitační studna a zdroj veškeré lenosti.`;
+      } else {
+        res.innerHTML = `📉 <strong>${input}</strong>:<br>
+          Důležitost vůči Ustrovi: <strong>0,000000067 %</strong>.<br>
+          Verdikt: Zanedbatelná existence. Okamžitě se otoč 5× čelem k Ústí a odevzdej svačinu.`;
+      }
+    }
+
+    let blessings = 0;
+    function blessIcon() {
+      blessings++;
+      const img = document.getElementById('ustrImg');
+      img.style.filter = "brightness(1.3) drop-shadow(0 0 30px #ffe885)";
+      setTimeout(() => { img.style.filter = ""; }, 500);
+
+      const msgs = [
+        "✨ Ustrova lebka odrazila 67 fotonů posvátného klidu přímo do tvé tváře!",
+        "✨ Modlitba k Ústí byla vyslyšena: Dnes nemusíš uklízet.",
+        "✨ Zázrak! Ustr zaznamenal tvou existenci a na znamení úcty zívnul.",
+        "✨ Cítíš to? Z kapsy ti právě zmizelo přesně 67 korun."
+      ];
+      showToast(msgs[blessings % msgs.length]);
+    }
+
+    function repositionItem() {
+      const select = document.getElementById('stolenItem');
+      const val = select.options[select.selectedIndex].text;
+      const res = document.getElementById('stealResult');
+      res.style.display = 'block';
+
+      res.innerHTML = `
+        🌌 <strong>Posvátný přesun dokončen:</strong><br>
+        Předmět <em>"${val}"</em> byl přesměrován do gravitačního pole Ustra. 
+        Pravděpodobnost návratu: přesně 0,67 %. Policii nevolej, Ústí nad Labem tě sleduje.
+      `;
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      toast.innerText = text;
+      toast.style.display = 'block';
+      clearTimeout(window.toastTimeout);
+      window.toastTimeout = setTimeout(() => { toast.style.display = 'none'; }, 4000);
+    }
+  </script>
+</body>
+</html>

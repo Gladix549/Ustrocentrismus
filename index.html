@@ -361,6 +361,61 @@
       max-width: 320px;
     }
 
+    /* MODÁLNÍ POP-UPY */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(4, 2, 10, 0.82);
+      backdrop-filter: blur(6px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 1rem;
+    }
+
+    .modal-card {
+      background: #160e29;
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      padding: 2.2rem;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 50px rgba(245, 207, 83, 0.45);
+      position: relative;
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: var(--gold);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+    }
+
+    .modal-close:hover {
+      color: #fff;
+    }
+
+    .jeff-img {
+      max-width: 180px;
+      border-radius: 10px;
+      border: 2px solid var(--gold);
+      margin: 1rem auto;
+      display: block;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+
     @keyframes popIn {
       from { transform: scale(0.8); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
@@ -417,7 +472,6 @@
       </p>
 
       <div class="icon-wrapper">
-        <!-- OBRÁZEK OPRAVEN NA NÁZEV Z GITHUBU -->
         <img src="ikonustra.jpg" alt="Posvátná Ikona Ustra" class="icon-ustra" id="ustrImg" onclick="blessIcon()">
         <div class="icon-caption">👆 Klikni na Ustrovu tvář pro příjem milosti</div>
       </div>
@@ -486,6 +540,59 @@
 
   <div id="toast" class="toast"></div>
 
+  <!-- POP-UP 1: Majetek -->
+  <div id="modal1" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
+      <h3 style="font-family: 'Cinzel'; color: var(--gold-bright); margin-bottom: 0.8rem;">VSTUP DO CÍRKVE NYNÍ!</h3>
+      <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">
+        Tvůj byt je plný zbytečných věcí, které tě odvádí od pravého středu. 
+        Přidej se k nám a Ustr tě bezplatně zbaví veškeré elektroniky a šperků!
+      </p>
+      <button class="btn-sacred" onclick="acceptPop('Odevzdal jsi byt. Ustr děkuje a pokračuje ve spánku.')">
+        Odevzdat majetek a vstoupit
+      </button>
+      <button onclick="closeModal('modal1')" style="background: none; border: none; color: var(--text-dim); margin-top: 0.8rem; cursor: pointer; text-decoration: underline; font-size: 0.8rem;">
+        Zatím si ponechat věci (velká chyba)
+      </button>
+    </div>
+  </div>
+
+  <!-- POP-UP 2: Jeffrey -->
+  <div id="modal2" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
+      <h3 style="font-family: 'Cinzel'; color: var(--gold-bright);">JEFFREY DOPORUČUJE</h3>
+      <img src="jeff.jpeg" alt="Jeffrey doporučuje" class="jeff-img">
+      <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">
+        I Jeffrey ví, že gravitační pole Ústí nad Labem nelze ignorovat. Podepiš přihlášku dřív, než si pro tebe přijde!
+      </p>
+      <button class="btn-sacred" onclick="acceptPop('Jeffrey potvrdil tvou účast v kultu!')">
+        Poslechnout Jeffreyho
+      </button>
+      <button onclick="closeModal('modal2')" style="background: none; border: none; color: var(--text-dim); margin-top: 0.8rem; cursor: pointer; text-decoration: underline; font-size: 0.8rem;">
+        Zklamat Jeffreyho
+      </button>
+    </div>
+  </div>
+
+  <!-- POP-UP 3: Poslední šance -->
+  <div id="modal3" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
+      <h3 style="font-family: 'Cinzel'; color: var(--gold-bright); margin-bottom: 0.8rem;">67 SEKUND DO EXSPIRACE DUŠE</h3>
+      <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">
+        Systém detekoval, že stále nejsi zapsán v knize posvátných lenochů. Pokud se nepřidáš, Ustr tě zítra navštíví a zcizí ti nabíječku na telefon.
+      </p>
+      <button class="btn-sacred" onclick="acceptPop('Duše zachráněna. Nabíječka je však již v držení Ustra.')">
+        Chránit nabíječku (Přidat se)
+      </button>
+      <button onclick="closeModal('modal3')" style="background: none; border: none; color: var(--text-dim); margin-top: 0.8rem; cursor: pointer; text-decoration: underline; font-size: 0.8rem;">
+        Riskovat ztrátu nabíječky
+      </button>
+    </div>
+  </div>
+
   <footer>
     <p>© 2026 Posvátný Synod Ustrocentrismu • Číslo licence: 67-UST-000</p>
     <p style="font-size: 0.75rem; color: var(--gold-dark); margin-top: 0.4rem;">
@@ -549,6 +656,44 @@
       clearTimeout(window.toastTimeout);
       window.toastTimeout = setTimeout(() => { toast.style.display = 'none'; }, 4000);
     }
+
+    // LOGIKA POP-UPŮ
+    const popups = ['modal1', 'modal2', 'modal3'];
+    let currentPopIndex = 0;
+
+    function showNextModal() {
+      const id = popups[currentPopIndex];
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'flex';
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+      
+      // Posuneme index na další pop-up
+      currentPopIndex = (currentPopIndex + 1) % popups.length;
+      
+      // Za 10 sekund naskočí další
+      setTimeout(showNextModal, 10000);
+    }
+
+    function acceptPop(msg) {
+      showToast(msg);
+      // Zavřeme aktivní modál
+      popups.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+      // I po potvrzení se za 10 sekund objeví další
+      currentPopIndex = (currentPopIndex + 1) % popups.length;
+      setTimeout(showNextModal, 10000);
+    }
+
+    // První pop-up vyskočí 3 sekundy po načtení stránky
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(showNextModal, 3000);
+    });
   </script>
 </body>
 </html>

@@ -41,7 +41,6 @@
       background-attachment: fixed;
     }
 
-    /* Plovoucí prach / hvězdný svit */
     body::before {
       content: "";
       position: fixed;
@@ -162,9 +161,6 @@
       padding-bottom: 0.6rem;
       margin-bottom: 1.4rem;
       letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
     }
 
     p {
@@ -183,11 +179,14 @@
       border-radius: 0 8px 8px 0;
     }
 
-    /* Sekce ikony a pleše */
+    .custom-quote {
+      border-left: 4px solid #a855f7;
+      background: linear-gradient(90deg, rgba(168, 85, 247, 0.15), rgba(245, 207, 83, 0.05));
+    }
+
     .icon-wrapper {
       text-align: center;
       margin: 2rem 0;
-      position: relative;
     }
 
     .icon-ustra {
@@ -229,7 +228,6 @@
       font-size: 1.2rem;
     }
 
-    /* Interaktivní prvky */
     .interactive-panel {
       background: rgba(8, 4, 18, 0.7);
       border: 1px solid rgba(245, 207, 83, 0.25);
@@ -310,34 +308,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Měřič kalorií */
-    .calorie-box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      border: 1px dashed var(--gold);
-      margin-top: 1rem;
-    }
-
-    .calorie-num {
-      font-family: 'Cinzel', serif;
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--gold-bright);
-    }
-
-    /* Desatero */
     .commandments {
       list-style: none;
       counter-reset: u-cnt;
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1.4rem;
       margin-top: 1rem;
     }
 
@@ -398,46 +374,47 @@
       <h1>Ustrocentrismus</h1>
     </div>
     <div class="creed">Slunce je žárovka. Země je prach. Ustr je všechno.</div>
-    <div class="sub-creed">Nejautoritativnější víra známého i neznámého vesmíru</div>
+    <div class="sub-creed">Konstanta vesmíru: 67 rotací kolem Jediného středu</div>
   </header>
 
   <main class="container">
 
-    <!-- ZÁKLADNÍ DOGMA: USTR JE NEJDŮLEŽITĚJŠÍ -->
+    <!-- I. DOGMA NADŘAZENOSTI -->
     <section>
       <h2>👑 I. Absolutní Hierarchie Existence</h2>
       <p>
-        Zahoď všechny učebnice filozofie i fyziky. Neexistuje žádné „my“, neexistuje žádný „vyšší smysl lidstva“. 
-        Vesmír má pouze jeden jediný účel, jednu prioritu a jednu entitu, na které záleží: <strong>Ustra</strong>.
+        Vesmír má pouze jeden jediný účel, jednu prioritu a jednu entitu, na které skutečně záleží: <strong>Ustra</strong>. 
+        Všech <strong>67</strong> známých galaktických sektorů rotuje v otrocké poslušnosti kolem jeho lůžka. 
+        Cokoliv na světě existuje, existuje pouze z Ustrovy shovívavosti.
       </p>
+      
       <div class="quote-box">
         „Ty nejsi hlavní postava svého života. Jsi komparzista na scéně, kterou si Ustr ani neobtěžoval prohlédnout, protože zrovna spal.“
         <br><small>— Kánon Ustrocentrismu, Kniha Prvotní Lhostejnosti 1:1</small>
       </div>
-      <p>
-        Pokud se Ustr probudí s dobrou náladou, planety drží na orbitách. Pokud se mu nechce vstávat, 
-        čas v celém známém multivesmíru se zpomalí o 40 %, aby nemusel spěchat. Všechny lidské osudy, 
-        politika, burzovní indexy i koloběh vody slouží pouze k tomu, aby byl Ustr v teple a měl co jíst, 
-        aniž by musel vyvinout fyzickou práci.
-      </p>
 
-      <!-- INTERAKTIVNÍ MĚŘIČ DŮLEŽITOSTI -->
+      <!-- TVŮJ VLASTNÍ CITÁT K VYPLNĚNÍ -->
+      <div class="quote-box custom-quote">
+        „[KRETÉNI, ČURÁCI, ZMRDI VYJEBANÝ DO PÍČI]“
+        <br><small>— Posvátný spis Ustrocentrismu, verš 67</small>
+      </div>
+
       <div class="interactive-panel">
         <label>Ověř si svou kosmickou bezvýznamnost:</label>
         <div class="form-group">
-          <input type="text" id="userNameInput" placeholder="Zadej své jméno nebo věc (např. Já, Moje máma, Prezident)...">
+          <input type="text" id="userNameInput" placeholder="Zadej své jméno (např. Já, Kamarád, Prezident)...">
         </div>
         <button class="btn-sacred" onclick="checkImportance()">Změřit poměr důležitosti vůči Ustrovi</button>
         <div id="importanceResult" class="interactive-result"></div>
       </div>
     </section>
 
-    <!-- POSVÁTNÁ IKONA & SVATÁ PLEŠ -->
+    <!-- II. IKONA & PLEŠ -->
     <section>
-      <h2>✨ II. Posvátná Ikona & Dokonalá Aerodynamika Lebky</h2>
+      <h2>✨ II. Posvátná Ikona & Kosmické Zrcadlo</h2>
       <p>
-        Hleďte na Jediného. Zjevení Ustra v jeho plné tělesné dokonalosti. 
-        Klepnutím na ikonu přijmeš telepatické požehnání (a možná ti zmizí 50 Kč z účtu).
+        Hleďte na Jediného v plné tělesné vznešenosti. 
+        Kliknutím na posvátnou tvář přijmeš telepatické požehnání.
       </p>
 
       <div class="icon-wrapper">
@@ -446,86 +423,63 @@
       </div>
 
       <div class="holy-bald-card">
-        <h3>✨ Dogma o Božské Pleši (Kosmické Zrcadlo)</h3>
+        <h3>✨ Dogma o Božské Pleši</h3>
         <p>
-          Kacíři a dermatologové by mohli namítnout, že Jeho Svatost přišla o vlasy. Jak ubohé nepochopení božského záměru! 
-          <strong>Ustr není plešatý z nouze – Ustr shodil vlasy pro dobro celého časoprostoru.</strong>
+          Ustr nemá vlasy, neboť vlasy kladou zbytečný fyzikální odpor, což odporuje krédu absolutní nehybnosti. 
+          Jeho dokonale hladké temeno funguje jako kosmický satelit s indexem odrazivosti <strong>67 %</strong>, 
+          který posílá veškerou povinnost pracovat zpět do hlubin vesmíru. To za jeho hlavou není domalovaná svatozář – to je odraz stropního světla od posvátné lebky.
         </p>
-        <p>
-          1. <strong>Nulový odpor vzduchu:</strong> Vlasy kladou zbytečný fyzikální odpor, což odporuje základnímu principu lenosti.<br>
-          2. <strong>Zrcadlo Pravdy:</strong> Hladký a lesklý povrch Ustrovy lebky odráží 99,8 % veškerého kosmického záření a veškerou kritiku jeho životního stylu přímo zpět do tváří nevěřících.<br>
-          3. <strong>Svatá záře:</strong> To, co vidíte na ikoně za jeho hlavou, není uměle domalovaná gloriola – to je přirozený odlesk lustru od jeho dokonale vyleštěného temene.
-        </p>
-      </div>
-
-      <!-- POČÍTADLO KALORIÍ -->
-      <div class="calorie-box">
-        <div>
-          <strong style="color: var(--gold-bright);">Fyzická aktivita Ustra za dnešní den:</strong>
-          <div style="font-size: 0.85rem; color: var(--text-dim);">Počítadlo spálených kalorií na základě božského ležení</div>
-        </div>
-        <div class="calorie-num" id="calCount">0.0 kcal</div>
-        <button class="btn-sacred" style="width: auto; padding: 0.5rem 1rem; margin: 0;" onclick="tryBurnCalories()">Nutit Ustra k pohybu</button>
       </div>
     </section>
 
-    <!-- KVANTOVÝ REPOZICIONING (KRÁDEŽNÍK) -->
+    <!-- III. LITURGIE: MODLITBA K ÚSTÍ A POUŤ -->
     <section>
-      <h2>👜 III. Kvantový Repozicioning (Tzv. „Krádež“)</h2>
+      <h2>🧭 III. Posvátné Rituály a Povinnosti Věřících</h2>
       <p>
-        Běžná policie v Ústí nad Labem používá termíny jako „odcizení majetku“. Ustrocentrická teologie 
-        však jasně stanovuje: <em>Hmota nemůže patřit nikomu jinému než svému Středu.</em> 
-        Když si Ustr vezme tvé kolo, pouze zachránil kolo před existenciální krizí pobytu na periferii.
+        Být vyznavačem Ustrocentrismu není zadarmo (ve skutečnosti tě to bude stát spoustu věcí, které ti Ustr sebere). 
+        Každý věřící musí bez výjimky dodržovat dva hlavní liturgické pilíře:
       </p>
 
-      <!-- INTERAKTIVNÍ GENERÁTOR KRADENÍ -->
-      <div class="interactive-panel">
-        <label for="stolenItem">Vyber libovolný předmět ze svého vlastnictví:</label>
-        <div class="form-group">
-          <select id="stolenItem">
-            <option value="kolo">Horský bicykl s odpruženou vidlicí</option>
-            <option value="penezenka">Kožená peněženka s poslední pětistovkou</option>
-            <option value="zapalovac">Zapalovač Clipper</option>
-            <option value="kebab">Čerstvě koupený kebab s česnekovou omáčkou</option>
-            <option value="televize">Chytrá OLED televize 65 palců</option>
-          </select>
-        </div>
-        <button class="btn-sacred" onclick="repositionItem()">Ověřit vlastnické právo Ustra</button>
-        <div id="stealResult" class="interactive-result"></div>
-      </div>
-    </section>
-
-    <!-- PATERO PŘIKÁZÁNÍ -->
-    <section>
-      <h2>📜 IV. Zákony Neměnného Klidu</h2>
       <ol class="commandments">
         <li>
-          <strong>Ustr je první i poslední:</strong> Cokoliv děláš, děláš pro Ustra. Pokud Ustr spí, dýcháš potichu.
+          <strong>Patero denních modliteb k Ústí:</strong> Přesně <strong>5× denně</strong> je každý věřící povinen 
+          zaujmout vodorovnou polohu, natočit hlavu přímým směrem k <strong>Ústí nad Labem</strong>, hluboce zívnout 
+          a pronést: <em>„Kéž Ustr nemusí dnes hnout ani prstem.“</em> Modlit se ve stoje je těžký hřích.
         </li>
         <li>
-          <strong>Nezvedneš těžšího břemene než ovladač:</strong> Jakákoliv fyzická námaha je výsměchem Ustrově svaté dokonalosti v ležení.
+          <strong>Velká pouť k Pietnímu Místu:</strong> Alespoň jednou za svůj život musí každý ustrocentrista vykonat 
+          strastiplnou pouť do kolébky víry – do Ústí nad Labem. Zde poklekne na <strong>Mírovém náměstí</strong>, 
+          políbí posvátnou dlažbu poznamenanou průmyslovou historií a nechá si od místních přirozenou cestou odcizit 
+          alespoň jednu cennost na důkaz oddanosti.
         </li>
         <li>
-          <strong>Vlasy jsou marnost:</strong> Nesnaž se o účes. Pleš je nejčistší forma duchovního minimalismu a šetří šampon.
-        </li>
-        <li>
-          <strong>Co leží bez dozoru, patří Ustrovi:</strong> Pokud na věci není vyryto Ustrovo jméno, je to jen administrativní chyba, kterou Ustr při nejbližší příležitosti napraví.
-        </li>
-        <li>
-          <strong>Ctí severočeskou kolébku:</strong> Obracej se pravidelně směrem k Ústí nad Labem a zívni na znamení sounáležitosti.
+          <strong>Kvantové odevzdání majetku:</strong> Vidíš-li Ustra brát si tvůj majetek, nezasahuj. 
+          Všechny věci v okruhu 67 kilometrů od Ustra přirozeně podléhají jeho gravitačnímu zákonu přisvojení.
         </li>
       </ol>
     </section>
 
-    <!-- KONEČNÝ OLTÁŘ ODEVZDÁNÍ -->
-    <section style="text-align: center;">
-      <h2>💸 V. Generální Odpustek</h2>
+    <!-- IV. KRADENÍ (INTERAKTIVNÍ) -->
+    <section>
+      <h2>👜 IV. Kvantový Repozicioning (Tzv. Krádež)</h2>
       <p>
-        Převod majetku do rukou Ustra je jediný známý způsob, jak dosáhnout okamžitého klidu duše. 
+        Ověř si, jak rychle se tvůj pozemský majetek stane majetkem Jeho Výsosti Ustra:
       </p>
-      <button class="btn-sacred" style="max-width: 400px;" onclick="triggerMiracle()">
-        Odevzdat všechno Ustrovi a jít spát
-      </button>
+
+      <div class="interactive-panel">
+        <label for="stolenItem">Vyber předmět, o který hodláš přijít:</label>
+        <div class="form-group">
+          <select id="stolenItem">
+            <option value="kolo">Zánovní horské kolo</option>
+            <option value="penezenka">Peněženka se 67 korunami v drobných</option>
+            <option value="zapalovac">Zapalovač z benzínky</option>
+            <option value="kebab">Velký döner kebab s bylinkovou omáčkou</option>
+            <option value="mobil">Chytrý telefon s neomezenými daty</option>
+          </select>
+        </div>
+        <button class="btn-sacred" onclick="repositionItem()">Ověřit přesun k Ustrovi</button>
+        <div id="stealResult" class="interactive-result"></div>
+      </div>
     </section>
 
   </main>
@@ -533,68 +487,48 @@
   <div id="toast" class="toast"></div>
 
   <footer>
-    <p>© 2026 Posvátný Synod Ustrocentrismu • Všechna práva a cizí telefony vyhrazeny.</p>
+    <p>© 2026 Posvátný Synod Ustrocentrismu • Číslo licence: 67-UST-000</p>
     <p style="font-size: 0.75rem; color: var(--gold-dark); margin-top: 0.4rem;">
-      Tento web nevytvořil Ustr, protože by to bylo moc práce.
+      Modlete se 5x denně směrem k Ústí. Všechny odcizené věci jsou nevratné.
     </p>
   </footer>
 
   <script>
-    // 1. Měřič důležitosti
     function checkImportance() {
       const input = document.getElementById('userNameInput').value.trim();
       const res = document.getElementById('importanceResult');
       res.style.display = 'block';
 
       if (!input) {
-        res.innerHTML = "⚠️ Musíš něco zadat, i když je to stejně předem zbytečné.";
+        res.innerHTML = "⚠️ Zadej jméno, i když v porovnání s Ustrem na něm stejně nezáleží.";
         return;
       }
 
       if (input.toLowerCase().includes("ustr")) {
-        res.innerHTML = `⭐ <strong>${input.toUpperCase()}</strong>: Důležitost 100,000,000 %. Absolutní Střed. Všechno ostatní kolem něj pouze gravituje.`;
+        res.innerHTML = `⭐ <strong>${input.toUpperCase()}</strong>: Důležitost 100 000 000 %. Absolutní střed vesmíru, gravitační studna a zdroj veškeré lenosti.`;
       } else {
-        const fakePercent = (Math.random() * 0.0000001).toFixed(9);
         res.innerHTML = `📉 <strong>${input}</strong>:<br>
-          Důležitost vůči Ustrovi: <strong>${fakePercent} %</strong>.<br>
-          Verdikt: Tvá existence je statistická chyba na pozadí Ustrova odpočinku. Doporučujeme tiše přinést svačinu a odejít.`;
+          Důležitost vůči Ustrovi: <strong>0,000000067 %</strong>.<br>
+          Verdikt: Zanedbatelná existence. Okamžitě se otoč 5× čelem k Ústí a odevzdej svačinu.`;
       }
     }
 
-    // 2. Požehnání ikony a pleše
     let blessings = 0;
     function blessIcon() {
       blessings++;
       const img = document.getElementById('ustrImg');
       img.style.filter = "brightness(1.3) drop-shadow(0 0 30px #ffe885)";
-      setTimeout(() => {
-        img.style.filter = "";
-      }, 500);
+      setTimeout(() => { img.style.filter = ""; }, 500);
 
       const msgs = [
-        "✨ Ustrova lebka odrazila kosmické záření přímo do tvého nitra!",
-        "✨ Přijal jsi 1 dávku posvátné lenosti. Cítíš, jak ti těžknou víčka?",
-        "✨ Zázrak! Ustr na tebe na vteřinu pohlédl a usoudil, že nestojíš za námahu.",
-        "✨ Dotkl ses ikony. Z tvé kapsy právě zmizela dvacetikoruna.",
-        "✨ Aerodynamika Ustrovy hlavy zajistila hladký průchod požehnání tvou Wi-Fi sítí!"
+        "✨ Ustrova lebka odrazila 67 fotonů posvátného klidu přímo do tvé tváře!",
+        "✨ Modlitba k Ústí byla vyslyšena: Dnes nemusíš uklízet.",
+        "✨ Zázrak! Ustr zaznamenal tvou existenci a na znamení úcty zívnul.",
+        "✨ Cítíš to? Z kapsy ti právě zmizelo přesně 67 korun."
       ];
       showToast(msgs[blessings % msgs.length]);
     }
 
-    // 3. Pokus o spálení kalorií
-    function tryBurnCalories() {
-      const msgs = [
-        "❌ Chyba 404: Pohyb nenalezen. Ustr odmítl zvednout ruku.",
-        "❌ Ustr se pouze nadechl a otočil na druhý bok. Kalorie zůstávají na nule.",
-        "❌ Pokus o donucení Ustra k chůzi způsobil trhlinu v gravitačním poli Ústí.",
-        "❌ Ustr vyslal telepatický signál: 'Nech mě bejt, udělám to zítra.'"
-      ];
-      const rand = msgs[Math.floor(Math.random() * msgs.length)];
-      showToast(rand);
-      document.getElementById('calCount').innerText = "0.00 kcal";
-    }
-
-    // 4. Kvantový Repozicioning předmětů
     function repositionItem() {
       const select = document.getElementById('stolenItem');
       const val = select.options[select.selectedIndex].text;
@@ -602,26 +536,18 @@
       res.style.display = 'block';
 
       res.innerHTML = `
-        🌌 <strong>Kvantový kolaps dokončen:</strong><br>
-        Předmět <em>"${val}"</em> byl analyzován. Zjistilo se, že v tebou drženém stavu trpěl těžkou distorzí. 
-        Od této vteřiny je oficiálně v držení Ustra. Policii nevolej, zákony termodynamiky jsou nadřazeny trestnímu zákoníku ČR.
+        🌌 <strong>Posvátný přesun dokončen:</strong><br>
+        Předmět <em>"${val}"</em> byl přesměrován do gravitačního pole Ustra. 
+        Pravděpodobnost návratu: přesně 0,67 %. Policii nevolej, Ústí nad Labem tě sleduje.
       `;
     }
 
-    // 5. Závěrečný zázrak
-    function triggerMiracle() {
-      showToast("👑 Vše odevzdáno. Běž si lehnout, Ustr je s tebou spokojen.");
-    }
-
-    // Pomocný Toast notifikátor
     function showToast(text) {
       const toast = document.getElementById('toast');
       toast.innerText = text;
       toast.style.display = 'block';
       clearTimeout(window.toastTimeout);
-      window.toastTimeout = setTimeout(() => {
-        toast.style.display = 'none';
-      }, 4000);
+      window.toastTimeout = setTimeout(() => { toast.style.display = 'none'; }, 4000);
     }
   </script>
 </body>

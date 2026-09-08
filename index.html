@@ -184,33 +184,135 @@
       background: linear-gradient(90deg, rgba(168, 85, 247, 0.15), rgba(245, 207, 83, 0.05));
     }
 
-    .icon-wrapper {
-      text-align: center;
-      margin: 2rem 0;
+    /* POSVÁTNÝ OLTÁŘ A SUPER-EFEKTY IKONY */
+    .icon-altar {
+      position: relative;
+      display: inline-block;
+      margin: 2.5rem auto;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    /* Rotující božské paprsky za obrazem */
+    .icon-altar::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 140%;
+      height: 140%;
+      transform: translate(-50%, -50%) rotate(0deg);
+      background: conic-gradient(
+        from 0deg,
+        rgba(255, 232, 133, 0) 0deg,
+        rgba(255, 232, 133, 0.45) 25deg,
+        rgba(255, 232, 133, 0) 50deg,
+        rgba(168, 85, 247, 0.4) 90deg,
+        rgba(255, 232, 133, 0) 130deg,
+        rgba(255, 232, 133, 0.5) 180deg,
+        rgba(255, 232, 133, 0) 230deg,
+        rgba(168, 85, 247, 0.45) 270deg,
+        rgba(255, 232, 133, 0) 330deg
+      );
+      border-radius: 50%;
+      z-index: 0;
+      opacity: 0.15;
+      filter: blur(10px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .icon-container {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 2;
+      border: 4px solid var(--gold);
+      box-shadow: 0 0 35px rgba(245, 207, 83, 0.4), 0 0 60px rgba(106, 27, 154, 0.4);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .icon-ustra {
       max-width: 320px;
       width: 100%;
       height: auto;
-      border-radius: 12px;
-      border: 4px solid var(--gold);
-      box-shadow: 0 0 35px rgba(245, 207, 83, 0.55), 0 0 70px rgba(106, 27, 154, 0.4);
-      cursor: pointer;
-      transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
+      display: block;
+      transition: all 0.5s ease;
+      filter: contrast(1.05);
     }
 
-    .icon-ustra:hover {
-      transform: scale(1.03);
-      filter: brightness(1.1);
-      box-shadow: 0 0 55px rgba(245, 207, 83, 0.8), 0 0 90px rgba(236, 72, 153, 0.5);
+    /* Blesk přes pleš (zrcadlový gleam efekt) */
+    .icon-container::after {
+      content: "";
+      position: absolute;
+      top: -120%;
+      left: -120%;
+      width: 250%;
+      height: 250%;
+      background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 245, 180, 0.7) 50%,
+        rgba(255, 255, 255, 0.9) 52%,
+        rgba(255, 255, 255, 0) 60%
+      );
+      transform: rotate(25deg);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    /* ULTRA POSVÁTNÝ HOVER STAV */
+    .icon-altar:hover::before {
+      opacity: 1;
+      width: 180%;
+      height: 180%;
+      filter: blur(14px);
+      animation: divineRays 8s linear infinite;
+    }
+
+    .icon-altar:hover .icon-container {
+      transform: translateY(-12px) scale(1.06);
+      border-color: #ffffff;
+      box-shadow: 
+        0 0 35px rgba(255, 255, 255, 0.9),
+        0 0 70px var(--gold-bright),
+        0 0 120px rgba(168, 85, 247, 0.85),
+        0 25px 50px rgba(0, 0, 0, 0.9);
+    }
+
+    .icon-altar:hover .icon-ustra {
+      filter: brightness(1.15) contrast(1.1);
+    }
+
+    .icon-altar:hover .icon-container::after {
+      opacity: 1;
+      animation: holyGleam 1.2s ease-in-out infinite;
+    }
+
+    @keyframes divineRays {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes holyGleam {
+      0% { top: -140%; left: -140%; }
+      70% { top: 120%; left: 120%; }
+      100% { top: 120%; left: 120%; }
     }
 
     .icon-caption {
-      font-size: 0.85rem;
-      color: var(--gold);
+      font-size: 0.9rem;
+      color: var(--gold-bright);
       margin-top: 0.8rem;
       font-style: italic;
+      text-shadow: 0 0 10px rgba(245, 207, 83, 0.6);
+      transition: color 0.3s ease;
+    }
+
+    .icon-altar:hover + .icon-caption {
+      color: #ffffff;
+      text-shadow: 0 0 15px #ffe885;
     }
 
     .holy-bald-card {
@@ -361,7 +463,6 @@
       max-width: 320px;
     }
 
-    /* MODÁLNÍ POP-UPY */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -464,19 +565,22 @@
     </section>
 
     <!-- II. IKONA & PLEŠ -->
-    <section>
-      <h2>✨ II. Posvátná Ikona & Kosmické Zrcadlo</h2>
+    <section style="text-align: center;">
+      <h2 style="justify-content: center;">✨ II. Posvátná Ikona & Kosmické Zrcadlo</h2>
       <p>
         Hleďte na Jediného v plné tělesné vznešenosti. 
-        Kliknutím na posvátnou tvář přijmeš telepatické požehnání.
+        Najeď kurzorem a spatři kosmickou záři lebky, kliknutím přijmeš telepatické požehnání.
       </p>
 
-      <div class="icon-wrapper">
-        <img src="ikonustra.jpg" alt="Posvátná Ikona Ustra" class="icon-ustra" id="ustrImg" onclick="blessIcon()">
-        <div class="icon-caption">👆 Klikni na Ustrovu tvář pro příjem milosti</div>
+      <!-- ZDE JE NOVÝ SUPER-POSVÁTNÝ OLTÁŘ -->
+      <div class="icon-altar" onclick="blessIcon()">
+        <div class="icon-container">
+          <img src="ikonustra.jpg" alt="Posvátná Ikona Ustra" class="icon-ustra" id="ustrImg">
+        </div>
       </div>
+      <div class="icon-caption">👆 Najeď pro zjevení svaté záře • Klepni pro příjem milosti</div>
 
-      <div class="holy-bald-card">
+      <div class="holy-bald-card" style="text-align: left; margin-top: 2rem;">
         <h3>✨ Dogma o Božské Pleši</h3>
         <p>
           Ustr nemá vlasy, neboť vlasy kladou zbytečný fyzikální odpor, což odporuje krédu absolutní nehybnosti. 
@@ -540,7 +644,7 @@
 
   <div id="toast" class="toast"></div>
 
-  <!-- POP-UP 1: Majetek -->
+  <!-- MODÁLNÍ POP-UPY -->
   <div id="modal1" class="modal-overlay">
     <div class="modal-card">
       <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
@@ -558,7 +662,6 @@
     </div>
   </div>
 
-  <!-- POP-UP 2: Jeffrey -->
   <div id="modal2" class="modal-overlay">
     <div class="modal-card">
       <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
@@ -576,7 +679,6 @@
     </div>
   </div>
 
-  <!-- POP-UP 3: Poslední šance -->
   <div id="modal3" class="modal-overlay">
     <div class="modal-card">
       <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
@@ -623,9 +725,9 @@
     let blessings = 0;
     function blessIcon() {
       blessings++;
-      const img = document.getElementById('ustrImg');
-      img.style.filter = "brightness(1.3) drop-shadow(0 0 30px #ffe885)";
-      setTimeout(() => { img.style.filter = ""; }, 500);
+      const altar = document.querySelector('.icon-container');
+      altar.style.boxShadow = "0 0 80px #ffffff, 0 0 120px #ffe885, 0 0 160px #a855f7";
+      setTimeout(() => { altar.style.boxShadow = ""; }, 600);
 
       const msgs = [
         "✨ Ustrova lebka odrazila 67 fotonů posvátného klidu přímo do tvé tváře!",
@@ -657,7 +759,6 @@
       window.toastTimeout = setTimeout(() => { toast.style.display = 'none'; }, 4000);
     }
 
-    // LOGIKA POP-UPŮ
     const popups = ['modal1', 'modal2', 'modal3'];
     let currentPopIndex = 0;
 
@@ -670,27 +771,20 @@
     function closeModal(id) {
       const el = document.getElementById(id);
       if (el) el.style.display = 'none';
-      
-      // Posuneme index na další pop-up
       currentPopIndex = (currentPopIndex + 1) % popups.length;
-      
-      // Za 10 sekund naskočí další
       setTimeout(showNextModal, 10000);
     }
 
     function acceptPop(msg) {
       showToast(msg);
-      // Zavřeme aktivní modál
       popups.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
       });
-      // I po potvrzení se za 10 sekund objeví další
       currentPopIndex = (currentPopIndex + 1) % popups.length;
       setTimeout(showNextModal, 10000);
     }
 
-    // První pop-up vyskočí 3 sekundy po načtení stránky
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(showNextModal, 3000);
     });

@@ -42,7 +42,7 @@
       background-attachment: fixed;
     }
 
-    /* 1. KODEXOVÝ RÁMEČEK OKOLO OBRAZOVKY */
+    /* KODEXOVÝ FIXNÍ RÁM A ORNAMENTY */
     .codex-frame {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -925,7 +925,7 @@
       <div class="interactive-panel">
         <label>Ověř si svou kosmickou bezvýznamnost:</label>
         <div class="form-group">
-          <input type="text" id="userNameInput" placeholder="Zadej své jméno (např. Já, Kamarád, Prezident)...">
+          <input type="text" id="userNameInput" placeholder="Zadej své jméno, funkci nebo cokoliv ze světa...">
         </div>
         <button class="btn-sacred" onclick="checkImportance()">Změřit poměr důležitosti vůči Ustrovi</button>
         <div id="importanceResult" class="interactive-result"></div>
@@ -966,7 +966,6 @@
       </p>
 
       <div class="candle-altar" id="candleRow">
-        <!-- 7 interaktivních svíček -->
         <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
         <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
         <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
@@ -989,7 +988,6 @@
       </p>
 
       <div class="scrolls-grid">
-        
         <div class="scroll-card">
           <div>
             <div class="scroll-badge">Historická Kronika</div>
@@ -1019,7 +1017,6 @@
             📜 Číst Manifest Ústecký
           </a>
         </div>
-
       </div>
     </section>
 
@@ -1078,7 +1075,7 @@
       <div class="interactive-panel">
         <label for="confessionText">Popiš svůj těžký hřích (zbytečnou fyzickou aktivitu):</label>
         <div class="form-group">
-          <input type="text" id="confessionText" placeholder="Např.: Dnes ráno jsem vstal z postele před polednem a umyl nádobí...">
+          <input type="text" id="confessionText" placeholder="Např.: Běžel jsem na šalinu, vyluxoval obývák, vařil jsem...">
         </div>
         <button class="btn-sacred" onclick="grantAbsolution()">Požádat o Rozhřešení a Pokání</button>
         <div id="confessionResult" class="interactive-result"></div>
@@ -1102,7 +1099,7 @@
 
         <div id="certificateBox" class="indulgence-certificate">
           <h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 0.5rem; color: #8c6d1d;">APOSTOLSKÝ ODPUSTEK USTROCENTRICKÝ</h3>
-          <p style="text-align: center; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.2rem;">
+          <p style="text-align: center; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.2rem;" id="certSerial">
             Vydáno pod patronátem Středu Všehomíra • Reg. č. 67/UST-2026
           </p>
           <p style="font-size: 1rem; line-height: 1.6; text-align: justify; color: #222;">
@@ -1112,7 +1109,7 @@
             Jeho/její majetek byl shledán přirozeně gravitačně přitahován k Ustrovi a nositel se zavazuje 
             při krádeži nevolat orgány činné v trestním řízení.
           </p>
-          <div style="margin-top: 1.5rem; font-size: 0.85rem; font-style: italic;">
+          <div style="margin-top: 1.5rem; font-size: 0.85rem; font-style: italic;" id="certDateNote">
             Dáno v Ústí nad Labem za věčného odpočinku Ustra.
           </div>
           <div class="indulgence-seal">
@@ -1213,27 +1210,219 @@
   </footer>
 
   <script>
-    // 1. MĚŘIČ DŮLEŽITOSTI
+    // ==========================================
+    // 1. CHYTRÝ MĚŘIČ DŮLEŽITOSTI (HROMADA VARIANT)
+    // ==========================================
     function checkImportance() {
-      const input = document.getElementById('userNameInput').value.trim();
+      const rawInput = document.getElementById('userNameInput').value.trim();
       const res = document.getElementById('importanceResult');
       res.style.display = 'block';
 
-      if (!input) {
-        res.innerHTML = "⚠️ Zadej jméno, i když v porovnání s Ustrem na něm stejně nezáleží.";
+      if (!rawInput) {
+        res.innerHTML = "⚠️ Nebylo zadáno nic. Tvé prázdno přesně odpovídá tvé hodnotě v kosmu.";
         return;
       }
 
-      if (input.toLowerCase().includes("ustr")) {
-        res.innerHTML = `⭐ <strong>${input.toUpperCase()}</strong>: Důležitost 100 000 000 %. Absolutní střed vesmíru, gravitační studna a zdroj veškeré lenosti.`;
-      } else {
-        res.innerHTML = `📉 <strong>${input}</strong>:<br>
-          Důležitost vůči Ustrovi: <strong>0,000000067 %</strong>.<br>
-          Verdikt: Zanedbatelná existence. Okamžitě se otoč 5× čelem k Ústí a odevzdej svačinu.`;
+      const val = rawInput.toLowerCase();
+
+      // Větvení podle kontextu vstupu
+      if (val.includes("ustr") || val === "já" && val.includes("bůh")) {
+        const ustrAnswers = [
+          `⭐ <strong>${rawInput.toUpperCase()}</strong>: Nekonečno %. Absolutní singularita, střed vesmíru a gravitační studna. Všechny galaxie slouží jen jako peřina pro jeho spánek.`,
+          `👑 <strong>${rawInput.toUpperCase()}</strong>: 100 000 000 %. Pokud Ustr zívne, na Jupiteru vznikne nová bouře. Jediná bytost, která má právo ležet bez výčitek.`,
+          `✨ <strong>${rawInput.toUpperCase()}</strong>: Nadlimitní hodnota! Vesmírný registr přetekl. Všechna hmota gravituje k jeho gauči.`
+        ];
+        res.innerHTML = ustrAnswers[Math.floor(Math.random() * ustrAnswers.length)];
+      } 
+      else if (val.includes("máma") || val.includes("mamka") || val.includes("babička")) {
+        res.innerHTML = `👵 <strong>${rawInput}</strong>:<br>
+          Důležitost vůči Ustrovi: <strong>4.20 %</strong> (výjimečně vysoké).<br>
+          <em>Důvod:</em> Je schopna Ustrovi usmažit řízek nebo uvařit svíčkovou, aniž by Ustr musel opustit horizontální polohu. Nadále však platí povinnost odevzdávat důchod.`;
+      }
+      else if (val.includes("prezident") || val.includes("vlada") || val.includes("stát") || val.includes("policie") || val.includes("starosta")) {
+        res.innerHTML = `🏛️ <strong>${rawInput}</strong>:<br>
+          Důležitost vůči Ustrovi: <strong>0.000000000001 %</strong>.<br>
+          <em>Verdikt:</em> Pozemské instituce jsou jen iluze. Ústí nad Labem a Ustrova lenost stojí vysoko nad ústavním pořádkem ČR. Jakýkoliv pokus o výběr daní bude Ustr ignorovat.`;
+      }
+      else if (val.includes("kamarad") || val.includes("kamo") || val.includes("bratr") || val.includes("sestra") || val.includes("petr") || val.includes("honza") || val.includes("filip")) {
+        res.innerHTML = `👥 <strong>${rawInput}</strong>:<br>
+          Důležitost: <strong>0.000067 %</strong>.<br>
+          <em>Diagnóza:</em> Vhodný pouze jako nosič kebabu nebo zdroj cigaret a zapalovačů. Při nejbližším setkání mu Ustr něco 'kvantově přemístí'.`;
+      }
+      else if (val === "já" || val === "ja" || val === "moje maličkost" || val === "sebe") {
+        const selfAnswers = [
+          `📉 <strong>Tvé vlastní ego:</strong> Důležitost: <strong>0.000000067 %</strong>.<br>Jsi pouhý biologický stojan na peněženku, ze které si Ustr jednou vezme tribut. Zhasni a jdi spát.`,
+          `📉 <strong>Ty sám:</strong> Důležitost: <strong>Neměřitelná (příliš malá)</strong>.<br>Pokud bys zítra zmizel, vesmír si toho nevšimne. Pokud by zítra vstal Ustr, zkolabuje fyzika. Udělej 5 modliteb k Ústí.`,
+          `📉 <strong>Tvá existence:</strong> Důležitost: <strong>0.000000001 %</strong>.<br>Jediný důvod, proč tě gravitace neroztrhala na atomy, je ten, že Ustr zrovna odpočívá a nechtělo se mu to řešit.`
+        ];
+        res.innerHTML = selfAnswers[Math.floor(Math.random() * selfAnswers.length)];
+      }
+      else {
+        // Generická náhodná databáze pro libovolný jiný text
+        const generalAnswers = [
+          `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>0.000000067 %</strong>.<br><em>Verdikt:</em> Zbytečná entita. V porovnání s leskem Ustrovy pleše jde o matný prach na koberci dějin.`,
+          `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>0.000000312 %</strong>.<br><em>Vyhodnocení:</em> Kosmický registr v Ústí nad Labem tento objekt eviduje pouze jako potenciální kořist pro Kvantový Repozicioning.`,
+          `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>Absolutní nula</strong>.<br>Objekt byl porovnán s Ustrovou schopností prospat 16 hodin v kuse a propadl na celé čáře. Okamžitě odevzdej svačinu.`,
+          `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>0.0000067 %</strong>.<br>Tato věc či osoba pouze spotřebovává kyslík v sektoru, kde by se mohl šířit Ustrův posvátný klid.`
+        ];
+        res.innerHTML = generalAnswers[Math.floor(Math.random() * generalAnswers.length)];
       }
     }
 
-    // 2. POŽEHNÁNÍ IKONY
+    // ==========================================
+    // 2. CHYTRÁ ZPOVĚDNICE (REAGUJE NA HŘÍCH)
+    // ==========================================
+    function grantAbsolution() {
+      const rawText = document.getElementById('confessionText').value.trim();
+      const res = document.getElementById('confessionResult');
+      res.style.display = 'block';
+
+      if (!rawText) {
+        res.innerHTML = "⚠️ Pokud nic nepřiznáš, Ustr si vezme tvůj majetek i bez rozhřešení.";
+        return;
+      }
+
+      const t = rawText.toLowerCase();
+      let verdict = "";
+      let penance = "";
+
+      if (t.includes("běh") || t.includes("behal") || t.includes("posilovna") || t.includes("fitko") || t.includes("cvičil") || t.includes("sport") || t.includes("kolo")) {
+        verdict = "TĚŽKÉ KACÍŘSTVÍ! Vyvíjení dobrovolného kardiovaskulárního tlaku přímo uráží Ustrovu svatou nehybnost.";
+        const sportPenances = [
+          "Za trest nesmíš 67 hodin slézt z gauče a každé 3 hodiny sníš mastný brambůrek.",
+          "Okamžitě prodej své sportovní boty a výtěžek pošli na Ustrův fond nealkoholických nápojů.",
+          "Jako pokání budeš 2 hodiny sledovat strop a opakovat: 'Moje svaly jsou marnost, Ustrův tuk je věčnost.'"
+        ];
+        penance = sportPenances[Math.floor(Math.random() * sportPenances.length)];
+      }
+      else if (t.includes("uklid") || t.includes("vysaval") || t.includes("nádobí") || t.includes("myla") || t.includes("pral") || t.includes("okna")) {
+        verdict = "URÁŽKA POSVÁTNÉHO PRACHU! Prach v bytě je přirozená sedimentace času. Ustr nikdy neuklízí.";
+        const cleanPenances = [
+          "Okamžitě rozsyp na koberec trochu drobků a nech je tam týden ležet jako poctu entropii.",
+          "Za trest nesmíš sáhnout na saponát dalších 14 dní. Nádobí nech odmočit do příštího lunárního cyklu.",
+          "Pokání: Posaď se do neuklizeného kouta a medituj nad tím, jak zbytečné bylo vytírat podlahu, po které Ustr ani nechodí."
+        ];
+        penance = cleanPenances[Math.floor(Math.random() * cleanPenances.length)];
+      }
+      else if (t.includes("prace") || t.includes("praci") || t.includes("skola") || t.includes("skole") || t.includes("ucil") || t.includes("vstaval") || t.includes("rano")) {
+        verdict = "ZNEUŽITÍ LIDSKÉHO POTENCIÁLU! Práce šlechtí jen ty, kteří nepochopili Ustrocentrické ležení.";
+        const workPenances = [
+          "Zítra zaspíš budík o minimálně 90 minut. Pokud se šéf zeptá, odkaž se na náboženskou svobodu a dekret z Ústí.",
+          "Během pracovní doby budeš 40 minut sedět se skelným pohledem a předstírat hlubokou analýzu tabulky v Excelu.",
+          "Jako trest si vezmeš nemocenskou a strávíš ji sledováním stupidních videí se zataženými žaluziemi."
+        ];
+        penance = workPenances[Math.floor(Math.random() * workPenances.length)];
+      }
+      else if (t.includes("jidlo") || t.includes("varil") || t.includes("hlad") || t.includes("pekla")) {
+        verdict = "KULINÁŘSKÁ PROTOKOLÁRNÍ CHYBA! Měl jsi objednat rozvoz až do postele.";
+        penance = "Za trest sněz studenou sekanou přímo z alobalu v horizontální poloze směrem k severozápadu.";
+      }
+      else {
+        verdict = "HŘÍCH PROTI KOSMICKÉMU KLIDU. Tvé světské pachtění rozvibrovalo Ustrovo gravitační pole.";
+        const randPenances = [
+          "Jako pokání se otoč 5x čelem k Ústí nad Labem, třikrát hlasitě zívni a odevzdej nejbližšímu člověku dvacku.",
+          "Trest: Zákaz jakéhokoliv pohybu rychlejšího než 1 km/h po dobu celého odpoledne.",
+          "Uloženo pokání: Vypij sklenici vlažné vody a 45 minut ignoruj všechny příchozí zprávy na mobilu.",
+          "Pokání: Odevzdej svůj oblíbený zapalovač Ustrovi (bude ti zcizen v nejbližších dnech)."
+        ];
+        penance = randPenances[Math.floor(Math.random() * randPenances.length)];
+      }
+
+      res.innerHTML = `
+        🛑 <strong>Zpověď:</strong> <em>"${rawText}"</em><br><br>
+        ⚖️ <strong>Církevní verdikt:</strong> ${verdict}<br><br>
+        📜 <strong>Uložené Pokání:</strong> ${penance}
+      `;
+    }
+
+    // ==========================================
+    // 3. REPOZICIONING (VÍCE VARIANT PRO PŘEDMĚTY)
+    // ==========================================
+    const itemOutcomes = {
+      kolo: [
+        "Převod dokončen: Přehazovačka se sama přeladila na gravitační vlny Ústí. Kolo již stojí před zastavárnou v Předlicích.",
+        "Kolo absorbováno: Ustr sice na kole nejezdí, protože šlapání je práce, ale hodlá ho vyměnit za 4 porce gyrosu.",
+        "Kosmický přesun: Řetěz z kola samovolně odpadl a Ustr z něj vytvořil liturgický náhrdelník."
+      ],
+      penezenka: [
+        "Fyzikální kolaps: Těch 67 Kč se v peněžence proměnilo v čisté požehnání. Zbytek hotovosti byl připsán na Ustrův účet za elektřinu.",
+        "Úspěšný přesun: Peněženka zůstala prázdná, ale zato lehká. Zbavili jsme tě pozemského břemene papírových platidel.",
+        "Zázrak: Karty byly zablokovány, mince propadly gravitační štěrbinou přímo do kapsy tepláků Jeho Svatosti."
+      ],
+      zapalovac: [
+        "Zapalovač zmizel: Posvátný zákon říká: Žádný zapalovač na světě nemá stálého majitele, existuje pouze Ustr, ke kterému všechny doputují.",
+        "Kvantový skok: Škrkátko zajiskřilo a zapalovač se zjevil na nočním stolku v Ústí. Kup si sirky.",
+        "Přivlastněno: Clipper je nyní oficiálním plamenem víry. Tvá ruka zůstala prázdná."
+      ],
+      kebab: [
+        "Gastronomický zázrak: Česneková omáčka se teleportovala Ustrovi na bradu. Tys zůstal o hladu, ale tvá karma stoupla o 0.00067 bodu.",
+        "Tribut přijat: Maso bylo zkonzumováno v posteli. Zbyly ti ubrousky, abys mohl utřít slzy radosti.",
+        "Přemístěno: Kebab byl vyhodnocen jako příliš těžký pro tvé trávení. Ustr se obětoval a snědl ho za tebe ve 3 ráno."
+      ],
+      mobil: [
+        "Přenos dat: Neomezená data nyní napájí Ustrův stream na YouTube. Pokud ti někdo volá, Ustr to típne, protože nemá náladu mluvit.",
+        "Displej zhasnul: Telefon byl rekonfigurován na posvátný budík, který nikdy nezvoní, aby nerušil spánek.",
+        "Odcizeno telepaticky: IMEI kód byl přepsán runami ze Severních Čech. SIM kartu si můžeš nechat na památku."
+      ]
+    };
+
+    function repositionItem() {
+      const select = document.getElementById('stolenItem');
+      const val = select.value;
+      const text = select.options[select.selectedIndex].text;
+      const res = document.getElementById('stealResult');
+      res.style.display = 'block';
+
+      const options = itemOutcomes[val] || ["Předmět zmizel v hlubinách Ústí nad Labem."];
+      const picked = options[Math.floor(Math.random() * options.length)];
+
+      res.innerHTML = `
+        🌌 <strong>Kvantový protokol pro: ${text}</strong><br>
+        ${picked}<br>
+        <small style="color: var(--gold-bright);">Šance na navrácení: 0.0000000 %.</small>
+      `;
+    }
+
+    // ==========================================
+    // 4. GENERÁTOR ODPUSTKU S UNIKÁTNÍMI TITULY
+    // ==========================================
+    function generateIndulgence() {
+      const name = document.getElementById('indulgenceName').value.trim();
+      if (!name) {
+        showToast("⚠️ Zadej jméno, komu má být glejt vystaven!");
+        return;
+      }
+
+      const titles = [
+        "Velkovezír Horizontálního Odpočinku",
+        "Čestný Dárce Majetku I. Třídy",
+        "Apoštol Věčného Nicnedělání",
+        "Osvobozený Otrok Budíku a Práce",
+        "Rytíř Ztracených Zapalovačů z Ústí"
+      ];
+      const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+      const randomNum = Math.floor(1000 + Math.random() * 9000);
+
+      document.getElementById('certHolderName').innerText = `${name} (${randomTitle})`;
+      document.getElementById('certSerial').innerText = `Vydáno pod patronátem Středu Všehomíra • Reg. č. 67/UST-${randomNum}`;
+      
+      const box = document.getElementById('certificateBox');
+      box.style.display = 'block';
+      box.scrollIntoView({ behavior: 'smooth' });
+      showToast("📜 Glejt byl zpečetěn a zapsán do nehybné matriky!");
+    }
+
+    // ==========================================
+    // 5. OSTATNÍ SYSTÉMY (IKONA, SVÍČKY, KOMPAS, POPUPY)
+    // ==========================================
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      toast.innerText = text;
+      toast.style.display = 'block';
+      clearTimeout(window.toastTimeout);
+      window.toastTimeout = setTimeout(() => { toast.style.display = 'none'; }, 4000);
+    }
+
     let blessings = 0;
     function blessIcon() {
       blessings++;
@@ -1243,36 +1432,62 @@
 
       const msgs = [
         "✨ Ustrova lebka odrazila 67 fotonů posvátného klidu přímo do tvé tváře!",
-        "✨ Modlitba k Ústí byla vyslyšena: Dnes nemusíš uklízet.",
+        "✨ Modlitba k Ústí byla vyslyšena: Dnes nemusíš mýt nádobí.",
         "✨ Zázrak! Ustr zaznamenal tvou existenci a na znamení úcty zívnul.",
-        "✨ Cítíš to? Z kapsy ti právě zmizelo přesně 67 korun."
+        "✨ Cítíš to chladno v kapse? Právě ti zmizela padesátikoruna.",
+        "✨ Telepatický signál z Ústí: 'Nech mě spát a přines colu.'"
       ];
       showToast(msgs[blessings % msgs.length]);
     }
 
-    // 3. REPOZICIONING
-    function repositionItem() {
-      const select = document.getElementById('stolenItem');
-      const val = select.options[select.selectedIndex].text;
-      const res = document.getElementById('stealResult');
-      res.style.display = 'block';
+    let candleCount = parseInt(localStorage.getItem('ustro_candles') || '67', 10);
+    document.getElementById('candleCountDisplay').innerText = candleCount;
 
-      res.innerHTML = `
-        🌌 <strong>Posvátný přesun dokončen:</strong><br>
-        Předmět <em>"${val}"</em> byl přesměrován do gravitačního pole Ustra. 
-        Pravděpodobnost návratu: přesně 0,67 %. Policii nevolej, Ústí nad Labem tě sleduje.
-      `;
+    function toggleCandle(el) {
+      el.classList.toggle('lit');
+      if (el.classList.contains('lit')) {
+        candleCount++;
+        showToast("🕯️ Zapálil jsi svíčku. Ustrův polštář je o 1 % měkčí.");
+      } else {
+        candleCount = Math.max(0, candleCount - 1);
+      }
+      localStorage.setItem('ustro_candles', candleCount);
+      document.getElementById('candleCountDisplay').innerText = candleCount;
     }
 
-    function showToast(text) {
-      const toast = document.getElementById('toast');
-      toast.innerText = text;
-      toast.style.display = 'block';
-      clearTimeout(window.toastTimeout);
-      window.toastTimeout = setTimeout(() => { toast.style.display = 'none'; }, 4000);
+    function locateUsti() {
+      const needle = document.getElementById('compassNeedle');
+      const status = document.getElementById('compassStatus');
+      
+      if (navigator.geolocation) {
+        status.innerText = "Zaměřuji magnetické pole Ústí nad Labem...";
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const lat1 = pos.coords.latitude;
+            const lon1 = pos.coords.longitude;
+            const lat2 = 50.6607;
+            const lon2 = 14.0323;
+
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const y = Math.sin(dLon) * Math.cos(lat2 * Math.PI / 180);
+            const x = Math.cos(lat1 * Math.PI / 180) * Math.sin(lat2 * Math.PI / 180) -
+                      Math.sin(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.cos(dLon);
+            let brng = Math.atan2(y, x) * 180 / Math.PI;
+            brng = (brng + 360) % 360;
+
+            needle.style.transform = `rotate(${brng}deg)`;
+            status.innerHTML = `📍 Cíl zaměřen: <strong>Ústí nad Labem</strong> na azimutu <strong>${Math.round(brng)}°</strong>!<br>Okamžitě lehni na zem tímto směrem a zívni.`;
+          },
+          () => {
+            needle.style.transform = `rotate(335deg)`;
+            status.innerHTML = `📍 GPS odmítnuta z vrozené lenosti. Nastaven posvátný azimut <strong>335° SZ</strong> k Ústí.`;
+          }
+        );
+      } else {
+        needle.style.transform = `rotate(335deg)`;
+      }
     }
 
-    // 4. POP-UPY S INTERVALEM 20S
     const popups = ['modal1', 'modal2', 'modal3'];
     let currentPopIndex = 0;
 
@@ -1299,99 +1514,7 @@
       setTimeout(showNextModal, 20000);
     }
 
-    // 5. INTERAKTIVNÍ SVÍČKY S LOCALSTORAGE
-    let candleCount = parseInt(localStorage.getItem('ustro_candles') || '67', 10);
-    document.getElementById('candleCountDisplay').innerText = candleCount;
-
-    function toggleCandle(el) {
-      el.classList.toggle('lit');
-      if (el.classList.contains('lit')) {
-        candleCount++;
-        showToast("🕯️ Zapálil jsi svíčku. Ustrův polštář je o 1 % měkčí.");
-      } else {
-        candleCount = Math.max(0, candleCount - 1);
-      }
-      localStorage.setItem('ustro_candles', candleCount);
-      document.getElementById('candleCountDisplay').innerText = candleCount;
-    }
-
-    // 6. KOMPAS K ÚSTÍ (50.6607° N, 14.0323° E)
-    function locateUsti() {
-      const needle = document.getElementById('compassNeedle');
-      const status = document.getElementById('compassStatus');
-      
-      if (navigator.geolocation) {
-        status.innerText = "Hledám polohu vůči Svatému Městu...";
-        navigator.geolocation.getCurrentPosition(
-          (pos) => {
-            const lat1 = pos.coords.latitude;
-            const lon1 = pos.coords.longitude;
-            const lat2 = 50.6607;
-            const lon2 = 14.0323;
-
-            // Výpočet azimutu
-            const dLon = (lon2 - lon1) * Math.PI / 180;
-            const y = Math.sin(dLon) * Math.cos(lat2 * Math.PI / 180);
-            const x = Math.cos(lat1 * Math.PI / 180) * Math.sin(lat2 * Math.PI / 180) -
-                      Math.sin(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.cos(dLon);
-            let brng = Math.atan2(y, x) * 180 / Math.PI;
-            brng = (brng + 360) % 360;
-
-            needle.style.transform = `rotate(${brng}deg)`;
-            status.innerHTML = `📍 Cíl zaměřen: <strong>Ústí nad Labem</strong> na azimutu <strong>${Math.round(brng)}°</strong>!<br>Okamžitě lehni na zem tímto směrem a zívni.`;
-          },
-          () => {
-            // Fallback azimut
-            needle.style.transform = `rotate(335deg)`;
-            status.innerHTML = `📍 GPS odmítnuta z lenosti. Nastaven univerzální posvátný azimut <strong>335° SZ</strong> k Ústí.`;
-          }
-        );
-      } else {
-        needle.style.transform = `rotate(335deg)`;
-      }
-    }
-
-    // 7. ZPOVĚDNICE A ROZHŘEŠENÍ
-    function grantAbsolution() {
-      const text = document.getElementById('confessionText').value.trim();
-      const res = document.getElementById('confessionResult');
-      res.style.display = 'block';
-
-      if (!text) {
-        res.innerHTML = "⚠️ Pokud nic nepřiznáš, Ustr si vezme tvou peněženku i bez rozhřešení.";
-        return;
-      }
-
-      const penances = [
-        "Za trest sněz dva studené párky, 40 minut lež na koberci a zírej do stropu směrem na Ústí.",
-        "Uvaluje se na tebe zákaz luxování a mytí oken na 67 dní. Pokud tě někdo uvidí pracovat, jsi exkomunikován.",
-        "Jako pokání odevzdej své oblíbené tričko nejbližšímu ústeckému občanovi a objednej si pizzu s dovozem až k posteli.",
-        "Tvůj hřích je těžký. Musíš 3 hodiny sledovat strop a opakovat posvátnou mantru lenosti bez pohnutí brvou."
-      ];
-      const randomPenance = penances[Math.floor(Math.random() * penances.length)];
-
-      res.innerHTML = `
-        🛑 <strong>Hřích zaznamenán:</strong> <em>"${text}"</em><br><br>
-        👑 <strong>Ustrovo Rozhřešení:</strong> Tvé pozemské pachtění je ti odpuštěno, ale nesmí se opakovat.<br>
-        ⚖️ <strong>Uložené Pokání:</strong> ${randomPenance}
-      `;
-    }
-
-    // 8. GENERÁTOR ODPUSTKU
-    function generateIndulgence() {
-      const name = document.getElementById('indulgenceName').value.trim();
-      if (!name) {
-        showToast("⚠️ Zadej jméno, komu má být glejt vystaven!");
-        return;
-      }
-      document.getElementById('certHolderName').innerText = name;
-      const box = document.getElementById('certificateBox');
-      box.style.display = 'block';
-      box.scrollIntoView({ behavior: 'smooth' });
-      showToast("📜 Glejt byl úspěšně zpečetěn Ustrovou autoritou!");
-    }
-
-    // 9. KADIDLO & JISKRY CANVAS
+    // CANVAS KADIDLO
     const canvas = document.getElementById('incenseCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -1404,9 +1527,7 @@
     resizeCanvas();
 
     class Spark {
-      constructor() {
-        this.reset();
-      }
+      constructor() { this.reset(); }
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = canvas.height + Math.random() * 20;
@@ -1420,9 +1541,7 @@
         this.y -= this.speedY;
         this.x += this.speedX;
         this.alpha -= 0.0015;
-        if (this.y < -10 || this.alpha <= 0) {
-          this.reset();
-        }
+        if (this.y < -10 || this.alpha <= 0) this.reset();
       }
       draw() {
         ctx.beginPath();
@@ -1434,16 +1553,11 @@
       }
     }
 
-    for (let i = 0; i < 45; i++) {
-      particles.push(new Spark());
-    }
+    for (let i = 0; i < 45; i++) particles.push(new Spark());
 
     function animateIncense() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
+      particles.forEach(p => { p.update(); p.draw(); });
       requestAnimationFrame(animateIncense);
     }
     animateIncense();

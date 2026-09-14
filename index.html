@@ -15,7 +15,7 @@
       --gold-dark: #947116;
       --text-main: #f0ebfa;
       --text-dim: #b8afcc;
-      --card-bg: rgba(20, 14, 38, 0.82);
+      --card-bg: rgba(20, 14, 38, 0.85);
       --card-border: rgba(245, 207, 83, 0.35);
     }
 
@@ -42,35 +42,93 @@
       background-attachment: fixed;
     }
 
-    body::before {
-      content: "";
+    /* 1. KODEXOVÝ RÁMEČEK OKOLO OBRAZOVKY */
+    .codex-frame {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border: 10px solid transparent;
+      border-image: linear-gradient(to bottom right, var(--gold), var(--gold-dark), var(--gold-bright)) 10;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .codex-frame-inner {
+      position: fixed;
+      top: 14px; left: 14px; right: 14px; bottom: 14px;
+      border: 1px solid rgba(245, 207, 83, 0.3);
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .corner-ornament {
+      position: fixed;
+      width: 48px;
+      height: 48px;
+      pointer-events: none;
+      z-index: 1000;
+      color: var(--gold-bright);
+      font-size: 1.8rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-shadow: 0 0 10px var(--gold);
+    }
+    .corner-tl { top: 12px; left: 12px; }
+    .corner-tr { top: 12px; right: 12px; }
+    .corner-bl { bottom: 12px; left: 12px; }
+    .corner-br { bottom: 12px; right: 12px; }
+
+    /* KADIDLO & AMBIENT CANVAS */
+    #incenseCanvas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: 
-        radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 40px 70px, #f5cf53, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 90px 40px, #ffffff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 160px 120px, #ffd700, rgba(0,0,0,0)),
-        radial-gradient(1.5px 1.5px at 230px 190px, #fff, rgba(0,0,0,0));
-      background-repeat: repeat;
-      background-size: 280px 280px;
-      opacity: 0.35;
       pointer-events: none;
       z-index: 0;
     }
 
+    /* LIVE TICKER PŘEROZDĚLENÉHO MAJETKU */
+    .ticker-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #180d2b, #2b1842, #180d2b);
+      border-bottom: 2px solid var(--gold);
+      color: var(--gold-bright);
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      padding: 6px 0;
+      z-index: 900;
+      overflow: hidden;
+      white-space: nowrap;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+    }
+
+    .ticker-move {
+      display: inline-block;
+      white-space: nowrap;
+      padding-left: 100%;
+      animation: tickerLoop 35s linear infinite;
+    }
+
+    @keyframes tickerLoop {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-100%, 0, 0); }
+    }
+
     .container {
-      max-width: 920px;
+      max-width: 940px;
       margin: 0 auto;
-      padding: 0 1.2rem 4rem 1.2rem;
+      padding: 3rem 1.4rem 5rem 1.4rem;
       position: relative;
       z-index: 1;
       display: flex;
       flex-direction: column;
-      gap: 3rem;
+      gap: 3.5rem;
     }
 
     header {
@@ -90,11 +148,11 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 250px;
-      height: 80px;
-      background: radial-gradient(ellipse, rgba(245, 207, 83, 0.45) 0%, transparent 70%);
+      width: 280px;
+      height: 90px;
+      background: radial-gradient(ellipse, rgba(245, 207, 83, 0.5) 0%, transparent 70%);
       z-index: -1;
-      filter: blur(20px);
+      filter: blur(25px);
     }
 
     h1 {
@@ -146,12 +204,12 @@
       background: #0d081b;
       border: 1px solid var(--card-border);
       border-radius: 50%;
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
     }
 
     h2 {
@@ -454,6 +512,167 @@
       box-shadow: 0 6px 20px rgba(245, 207, 83, 0.5);
     }
 
+    /* KOMPAS SMĚREM K ÚSTÍ */
+    .compass-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    .compass-circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+      background: radial-gradient(circle, #1c1033 0%, #0a0414 100%);
+      position: relative;
+      box-shadow: 0 0 25px rgba(245, 207, 83, 0.3), inset 0 0 15px rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .compass-marker {
+      position: absolute;
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--gold-bright);
+    }
+    .compass-n { top: 6px; }
+    .compass-s { bottom: 6px; }
+    .compass-e { right: 8px; }
+    .compass-w { left: 8px; }
+
+    .compass-needle {
+      width: 6px;
+      height: 130px;
+      position: absolute;
+      transform: rotate(0deg);
+      transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .compass-needle::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 0; height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 65px solid #ff3366;
+      filter: drop-shadow(0 0 8px #ff3366);
+    }
+
+    .compass-needle::after {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 65px solid var(--gold-bright);
+    }
+
+    .compass-center-cap {
+      width: 16px;
+      height: 16px;
+      background: var(--gold-bright);
+      border-radius: 50%;
+      position: absolute;
+      box-shadow: 0 0 10px #fff;
+      z-index: 5;
+    }
+
+    /* OLTÁŘ SVÍČEK */
+    .candle-altar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      margin: 1.8rem 0;
+      padding: 1.5rem;
+      background: rgba(10, 5, 20, 0.6);
+      border-radius: 12px;
+      border: 1px dashed var(--gold-dark);
+    }
+
+    .candle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .candle:hover { transform: scale(1.1); }
+
+    .candle-flame {
+      width: 14px;
+      height: 24px;
+      background: radial-gradient(ellipse at bottom, #fff 0%, #ffbb00 60%, #ff4400 90%);
+      border-radius: 50% 50% 20% 20%;
+      box-shadow: 0 0 14px #ffaa00, 0 0 25px #ff5500;
+      animation: flicker 0.15s infinite alternate;
+      margin-bottom: 2px;
+      opacity: 0.25;
+      filter: grayscale(80%);
+      transition: all 0.3s ease;
+    }
+
+    .candle.lit .candle-flame {
+      opacity: 1;
+      filter: grayscale(0%);
+    }
+
+    .candle-stick {
+      width: 22px;
+      height: 60px;
+      background: linear-gradient(to right, #e8dfcc, #f7f1e1, #c4b9a0);
+      border-radius: 4px;
+      box-shadow: inset 0 -4px 6px rgba(0,0,0,0.4);
+    }
+
+    @keyframes flicker {
+      0% { transform: scale(1) rotate(-1deg); }
+      100% { transform: scale(1.1, 0.95) rotate(1deg); }
+    }
+
+    /* CERTIFIKÁT ODPUSTKU */
+    .indulgence-certificate {
+      background: #fdf6e2;
+      color: #2b1f0d;
+      border: 10px double #8c6d1d;
+      padding: 2.2rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+      font-family: 'Cinzel', serif;
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+      display: none;
+    }
+
+    .indulgence-seal {
+      position: absolute;
+      bottom: 20px;
+      right: 25px;
+      width: 85px;
+      height: 85px;
+      background: radial-gradient(circle, #a11414 60%, #6e0808 100%);
+      border-radius: 50%;
+      border: 3px dashed #f5cf53;
+      color: #f5cf53;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      transform: rotate(-15deg);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
     .interactive-panel {
       background: rgba(8, 4, 18, 0.7);
       border: 1px solid rgba(245, 207, 83, 0.25);
@@ -474,7 +693,7 @@
       margin-bottom: 0.4rem;
     }
 
-    select, input[type="text"] {
+    select, input[type="text"], textarea {
       width: 100%;
       padding: 0.7rem 1rem;
       background: #17102b;
@@ -485,7 +704,7 @@
       font-size: 1rem;
     }
 
-    select:focus, input[type="text"]:focus {
+    select:focus, input[type="text"]:focus, textarea:focus {
       outline: none;
       border-color: var(--gold-bright);
       box-shadow: 0 0 10px rgba(245, 207, 83, 0.4);
@@ -519,7 +738,7 @@
 
     .interactive-result {
       margin-top: 1.2rem;
-      padding: 1rem;
+      padding: 1.2rem;
       border-radius: 8px;
       background: rgba(245, 207, 83, 0.08);
       border-left: 3px solid var(--gold-bright);
@@ -573,18 +792,18 @@
 
     .toast {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 25px;
+      right: 25px;
       background: #1e1136;
       border: 2px solid var(--gold);
       color: var(--gold-bright);
-      padding: 1rem 1.5rem;
+      padding: 1.2rem 1.6rem;
       border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      z-index: 1000;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.9);
+      z-index: 10000;
       display: none;
       animation: popIn 0.3s ease;
-      max-width: 320px;
+      max-width: 340px;
     }
 
     .modal-overlay {
@@ -645,9 +864,34 @@
       from { transform: scale(0.8); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
+
+    /* Tisková verze odpustku */
+    @media print {
+      body * { visibility: hidden; }
+      .indulgence-certificate, .indulgence-certificate * { visibility: visible; }
+      .indulgence-certificate { position: absolute; left: 0; top: 0; width: 100%; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- KODEXOVÝ FIXNÍ RÁM A ORNAMENTY -->
+  <div class="codex-frame"></div>
+  <div class="codex-frame-inner"></div>
+  <div class="corner-ornament corner-tl">⚜</div>
+  <div class="corner-ornament corner-tr">⚜</div>
+  <div class="corner-ornament corner-bl">⚜</div>
+  <div class="corner-ornament corner-br">⚜</div>
+
+  <!-- AMBIENT KADIDLO & JISKRY -->
+  <canvas id="incenseCanvas"></canvas>
+
+  <!-- LIVE TICKER PŘEROZDĚLENÉHO MAJETKU -->
+  <div class="ticker-wrap">
+    <div class="ticker-move" id="tickerContent">
+      ⚡ LIVE PŘEROZDĚLENÍ: Před 2 min zcizena Škoda Octavia v Děčíně pro Ustrův fond • Hodnota Ustrova spánku vyčíslena na 67 000 000 000 Kč • Poslední tribut: 5x Kebab s česnekem doručen na gauč • 14 280 věřících se právě modlí vleže k Ústí • Ztráty hlášené policií: Vše v normě Ustrocentrismu ⚡
+    </div>
+  </div>
 
   <header>
     <div class="divine-glory">
@@ -713,9 +957,32 @@
       </div>
     </section>
 
-    <!-- NOVÁ SEKCE: KANONICKÉ DOKUMENTY (VITA CAROLI & MANIFEST) -->
+    <!-- OLTÁŘ SVÍČEK ZA USTRŮV KLID -->
+    <section style="text-align: center;">
+      <h2 style="justify-content: center;">🕯️ III. Svatý Oltář Věčného Spánku</h2>
+      <p>
+        Zapal svíčku za to, aby Ustr dnes nemusel vstávat a aby cizí majetek hladce doputoval do jeho rukou. 
+        Každý plamínek hřeje Ustrovo gravitační jádro.
+      </p>
+
+      <div class="candle-altar" id="candleRow">
+        <!-- 7 interaktivních svíček -->
+        <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle lit" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--gold-bright);">
+        Celkem zapáleno svíček ve farnosti: <strong id="candleCountDisplay">67</strong>
+      </p>
+    </section>
+
+    <!-- KANONICKÉ DOKUMENTY (VITA CAROLI & MANIFEST) -->
     <section>
-      <h2>📜 III. Svaté Kanonické Texty a Kroniky</h2>
+      <h2>📜 IV. Svaté Kanonické Texty a Kroniky</h2>
       <p>
         Pravda o Ustrovi nebyla vymyšlena včera. Jeho gravitační vliv se prolíná celými dějinami českého národa. 
         Níže naleznete původní, církví zapečetěné archiválie odhalující základy naší víry.
@@ -723,7 +990,6 @@
 
       <div class="scrolls-grid">
         
-        <!-- DOKUMENT 1: VITA CAROLI -->
         <div class="scroll-card">
           <div>
             <div class="scroll-badge">Historická Kronika</div>
@@ -734,13 +1000,11 @@
               ze svého místa a přirozeně absorbovala císařskou pokladnici.
             </p>
           </div>
-          <!-- TADY NAHRAĎ ODKAZ SVÝM GOOGLE DOKUMENTEM -->
           <a href="https://docs.google.com/document/d/1VHqCut30BCRgdPqa_faRILyItmV9vIrtUceNsQnMMhY/edit?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="scroll-btn">
             📖 Otevřít Kroniku Karla IV.
           </a>
         </div>
 
-        <!-- DOKUMENT 2: MANIFEST ÚSTECKÝ -->
         <div class="scroll-card">
           <div>
             <div class="scroll-badge">Svaté Písmo</div>
@@ -751,7 +1015,6 @@
               přenést veškerá svá pozemská břemena a majetky přímo na Ustra.
             </p>
           </div>
-          <!-- TADY NAHRAĎ ODKAZ SVÝM GOOGLE DOKUMENTEM -->
           <a href="https://docs.google.com/document/d/1tcchm2hZtfSx5-k5nCCuW_Bc2KrgdLOWb3aTrrdhhsg/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="scroll-btn">
             📜 Číst Manifest Ústecký
           </a>
@@ -760,13 +1023,30 @@
       </div>
     </section>
 
-    <!-- IV. LITURGIE: MODLITBA K ÚSTÍ A POUŤ -->
+    <!-- LITURGIE + KOMPAS K ÚSTÍ -->
     <section>
-      <h2>🧭 IV. Posvátné Rituály a Povinnosti Věřících</h2>
+      <h2>🧭 V. Posvátné Rituály a Kosmický Kompas</h2>
       <p>
-        Být vyznavačem Ustrocentrismu není zadarmo (ve skutečnosti tě to bude stát spoustu věcí, které ti Ustr sebere). 
-        Každý věřící musí bez výjimky dodržovat dva hlavní liturgické pilíře:
+        Být vyznavačem Ustrocentrismu vyžaduje přesnou orientaci v prostoru. 
+        Zde je tvůj osobní liturgický kompas ukazující směr k Pietnímu Místu:
       </p>
+
+      <div class="compass-wrapper">
+        <div class="compass-circle">
+          <div class="compass-marker compass-n">S</div>
+          <div class="compass-marker compass-s">J</div>
+          <div class="compass-marker compass-e">V</div>
+          <div class="compass-marker compass-w">Z</div>
+          <div class="compass-needle" id="compassNeedle"></div>
+          <div class="compass-center-cap"></div>
+        </div>
+        <button class="btn-sacred" style="width: auto; padding: 0.6rem 1.4rem;" onclick="locateUsti()">
+          🧭 Zkalibrovat azimut k Ústí nad Labem
+        </button>
+        <div id="compassStatus" style="font-size: 0.95rem; color: var(--gold-bright); text-align: center;">
+          Směr: 335° SZ • Vzdálenost: cca 67 km • Ihned zaujmi vodorovnou polohu!
+        </div>
+      </div>
 
       <ol class="commandments">
         <li>
@@ -787,9 +1067,67 @@
       </ol>
     </section>
 
-    <!-- V. KRADENÍ (INTERAKTIVNÍ) -->
+    <!-- POSVÁTNÁ ZPOVĚDNICE -->
     <section>
-      <h2>👜 V. Kvantový Repozicioning (Tzv. Krádež)</h2>
+      <h2>🙏 VI. Zpovědnice Prohřešků proti Lenosti</h2>
+      <p>
+        Dopustil ses dnes kacířského činu? Běhal jsi, uklízel byt, šel do práce nebo jinak urazil Ustrův posvátný klid? 
+        Vyhledej rozhřešení a přijmi trest dřív, než tě dostihne gravitační kolaps.
+      </p>
+
+      <div class="interactive-panel">
+        <label for="confessionText">Popiš svůj těžký hřích (zbytečnou fyzickou aktivitu):</label>
+        <div class="form-group">
+          <input type="text" id="confessionText" placeholder="Např.: Dnes ráno jsem vstal z postele před polednem a umyl nádobí...">
+        </div>
+        <button class="btn-sacred" onclick="grantAbsolution()">Požádat o Rozhřešení a Pokání</button>
+        <div id="confessionResult" class="interactive-result"></div>
+      </div>
+    </section>
+
+    <!-- GENERÁTOR ÚŘEDNÍHO ODPUSTKU -->
+    <section>
+      <h2>📜 VII. Generátor Úředního Odpustku</h2>
+      <p>
+        Získej oficiální, církví potvrzený certifikát osvobozující tě od jakékoliv fyzické práce a odpovědnosti 
+        za ztracené předměty v domácnosti.
+      </p>
+
+      <div class="interactive-panel">
+        <label for="indulgenceName">Jméno hříšníka pro vystavení odpustku:</label>
+        <div class="form-group">
+          <input type="text" id="indulgenceName" placeholder="Zadej celé své světské jméno...">
+        </div>
+        <button class="btn-sacred" onclick="generateIndulgence()">Vystavit Pečetěný Odpustek</button>
+
+        <div id="certificateBox" class="indulgence-certificate">
+          <h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 0.5rem; color: #8c6d1d;">APOSTOLSKÝ ODPUSTEK USTROCENTRICKÝ</h3>
+          <p style="text-align: center; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.2rem;">
+            Vydáno pod patronátem Středu Všehomíra • Reg. č. 67/UST-2026
+          </p>
+          <p style="font-size: 1rem; line-height: 1.6; text-align: justify; color: #222;">
+            Tímto se na vědomost dává, že nositel tohoto glejtu, ctihodný/á 
+            <strong id="certHolderName" style="text-decoration: underline; color: #8c6d1d;">[JMÉNO]</strong>, 
+            byl/a plně zbaven/a všech hříchů zbytečné práce, sportu a vstávání. 
+            Jeho/její majetek byl shledán přirozeně gravitačně přitahován k Ustrovi a nositel se zavazuje 
+            při krádeži nevolat orgány činné v trestním řízení.
+          </p>
+          <div style="margin-top: 1.5rem; font-size: 0.85rem; font-style: italic;">
+            Dáno v Ústí nad Labem za věčného odpočinku Ustra.
+          </div>
+          <div class="indulgence-seal">
+            PEČEŤ<br>USTRA<br>★ 67 ★
+          </div>
+          <button class="btn-sacred" style="margin-top: 1.5rem; background: #8c6d1d; color: #fff;" onclick="window.print()">
+            🖨️ Vytisknout tento Posvátný Glejt
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- KRADENÍ (INTERAKTIVNÍ) -->
+    <section>
+      <h2>👜 VIII. Kvantový Repozicioning (Tzv. Krádež)</h2>
       <p>
         Ověř si, jak rychle se tvůj pozemský majetek stane majetkem Jeho Výsosti Ustra:
       </p>
@@ -875,6 +1213,7 @@
   </footer>
 
   <script>
+    // 1. MĚŘIČ DŮLEŽITOSTI
     function checkImportance() {
       const input = document.getElementById('userNameInput').value.trim();
       const res = document.getElementById('importanceResult');
@@ -894,6 +1233,7 @@
       }
     }
 
+    // 2. POŽEHNÁNÍ IKONY
     let blessings = 0;
     function blessIcon() {
       blessings++;
@@ -910,6 +1250,7 @@
       showToast(msgs[blessings % msgs.length]);
     }
 
+    // 3. REPOZICIONING
     function repositionItem() {
       const select = document.getElementById('stolenItem');
       const val = select.options[select.selectedIndex].text;
@@ -931,6 +1272,7 @@
       window.toastTimeout = setTimeout(() => { toast.style.display = 'none'; }, 4000);
     }
 
+    // 4. POP-UPY S INTERVALEM 20S
     const popups = ['modal1', 'modal2', 'modal3'];
     let currentPopIndex = 0;
 
@@ -956,6 +1298,155 @@
       currentPopIndex = (currentPopIndex + 1) % popups.length;
       setTimeout(showNextModal, 20000);
     }
+
+    // 5. INTERAKTIVNÍ SVÍČKY S LOCALSTORAGE
+    let candleCount = parseInt(localStorage.getItem('ustro_candles') || '67', 10);
+    document.getElementById('candleCountDisplay').innerText = candleCount;
+
+    function toggleCandle(el) {
+      el.classList.toggle('lit');
+      if (el.classList.contains('lit')) {
+        candleCount++;
+        showToast("🕯️ Zapálil jsi svíčku. Ustrův polštář je o 1 % měkčí.");
+      } else {
+        candleCount = Math.max(0, candleCount - 1);
+      }
+      localStorage.setItem('ustro_candles', candleCount);
+      document.getElementById('candleCountDisplay').innerText = candleCount;
+    }
+
+    // 6. KOMPAS K ÚSTÍ (50.6607° N, 14.0323° E)
+    function locateUsti() {
+      const needle = document.getElementById('compassNeedle');
+      const status = document.getElementById('compassStatus');
+      
+      if (navigator.geolocation) {
+        status.innerText = "Hledám polohu vůči Svatému Městu...";
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const lat1 = pos.coords.latitude;
+            const lon1 = pos.coords.longitude;
+            const lat2 = 50.6607;
+            const lon2 = 14.0323;
+
+            // Výpočet azimutu
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const y = Math.sin(dLon) * Math.cos(lat2 * Math.PI / 180);
+            const x = Math.cos(lat1 * Math.PI / 180) * Math.sin(lat2 * Math.PI / 180) -
+                      Math.sin(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.cos(dLon);
+            let brng = Math.atan2(y, x) * 180 / Math.PI;
+            brng = (brng + 360) % 360;
+
+            needle.style.transform = `rotate(${brng}deg)`;
+            status.innerHTML = `📍 Cíl zaměřen: <strong>Ústí nad Labem</strong> na azimutu <strong>${Math.round(brng)}°</strong>!<br>Okamžitě lehni na zem tímto směrem a zívni.`;
+          },
+          () => {
+            // Fallback azimut
+            needle.style.transform = `rotate(335deg)`;
+            status.innerHTML = `📍 GPS odmítnuta z lenosti. Nastaven univerzální posvátný azimut <strong>335° SZ</strong> k Ústí.`;
+          }
+        );
+      } else {
+        needle.style.transform = `rotate(335deg)`;
+      }
+    }
+
+    // 7. ZPOVĚDNICE A ROZHŘEŠENÍ
+    function grantAbsolution() {
+      const text = document.getElementById('confessionText').value.trim();
+      const res = document.getElementById('confessionResult');
+      res.style.display = 'block';
+
+      if (!text) {
+        res.innerHTML = "⚠️ Pokud nic nepřiznáš, Ustr si vezme tvou peněženku i bez rozhřešení.";
+        return;
+      }
+
+      const penances = [
+        "Za trest sněz dva studené párky, 40 minut lež na koberci a zírej do stropu směrem na Ústí.",
+        "Uvaluje se na tebe zákaz luxování a mytí oken na 67 dní. Pokud tě někdo uvidí pracovat, jsi exkomunikován.",
+        "Jako pokání odevzdej své oblíbené tričko nejbližšímu ústeckému občanovi a objednej si pizzu s dovozem až k posteli.",
+        "Tvůj hřích je těžký. Musíš 3 hodiny sledovat strop a opakovat posvátnou mantru lenosti bez pohnutí brvou."
+      ];
+      const randomPenance = penances[Math.floor(Math.random() * penances.length)];
+
+      res.innerHTML = `
+        🛑 <strong>Hřích zaznamenán:</strong> <em>"${text}"</em><br><br>
+        👑 <strong>Ustrovo Rozhřešení:</strong> Tvé pozemské pachtění je ti odpuštěno, ale nesmí se opakovat.<br>
+        ⚖️ <strong>Uložené Pokání:</strong> ${randomPenance}
+      `;
+    }
+
+    // 8. GENERÁTOR ODPUSTKU
+    function generateIndulgence() {
+      const name = document.getElementById('indulgenceName').value.trim();
+      if (!name) {
+        showToast("⚠️ Zadej jméno, komu má být glejt vystaven!");
+        return;
+      }
+      document.getElementById('certHolderName').innerText = name;
+      const box = document.getElementById('certificateBox');
+      box.style.display = 'block';
+      box.scrollIntoView({ behavior: 'smooth' });
+      showToast("📜 Glejt byl úspěšně zpečetěn Ustrovou autoritou!");
+    }
+
+    // 9. KADIDLO & JISKRY CANVAS
+    const canvas = document.getElementById('incenseCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Spark {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + Math.random() * 20;
+        this.size = Math.random() * 2.5 + 1;
+        this.speedY = Math.random() * 0.8 + 0.3;
+        this.speedX = (Math.random() - 0.5) * 0.4;
+        this.alpha = Math.random() * 0.6 + 0.2;
+        this.color = Math.random() > 0.4 ? '245, 207, 83' : '255, 235, 140';
+      }
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        this.alpha -= 0.0015;
+        if (this.y < -10 || this.alpha <= 0) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = `rgba(${this.color}, 0.8)`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 45; i++) {
+      particles.push(new Spark());
+    }
+
+    function animateIncense() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateIncense);
+    }
+    animateIncense();
 
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(showNextModal, 6000);

@@ -2,7 +2,7 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Ustrocentrismus | Jediný Střed Všeho</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +23,12 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
     }
 
     body {
@@ -31,7 +37,6 @@
       line-height: 1.8;
       min-height: 100vh;
       position: relative;
-      overflow-x: hidden;
       background-color: #0b0716;
       background-image: 
         radial-gradient(circle at 50% 0%, rgba(218, 165, 32, 0.28) 0%, transparent 45%),
@@ -79,7 +84,7 @@
     .corner-bl { bottom: 12px; left: 12px; }
     .corner-br { bottom: 12px; right: 12px; }
 
-    /* KADIDLO & AMBIENT CANVAS */
+    /* KADIDLO CANVAS */
     #incenseCanvas {
       position: fixed;
       top: 0;
@@ -90,7 +95,7 @@
       z-index: 0;
     }
 
-    /* LIVE TICKER PŘEROZDĚLENÉHO MAJETKU */
+    /* LIVE TICKER */
     .ticker-wrap {
       position: fixed;
       top: 0;
@@ -123,7 +128,7 @@
     .container {
       max-width: 940px;
       margin: 0 auto;
-      padding: 3rem 1.4rem 5rem 1.4rem;
+      padding: 4.5rem 1.4rem 5rem 1.4rem;
       position: relative;
       z-index: 1;
       display: flex;
@@ -133,7 +138,7 @@
 
     header {
       text-align: center;
-      padding: 5rem 1rem 2rem 1rem;
+      padding: 3rem 1rem 1.5rem 1rem;
       position: relative;
     }
 
@@ -157,26 +162,27 @@
 
     h1 {
       font-family: 'Cinzel Decorative', cursive;
-      font-size: clamp(2.3rem, 6vw, 4.4rem);
+      font-size: clamp(2rem, 6vw, 4.4rem);
       color: var(--gold-bright);
       text-shadow: 0 0 25px rgba(245, 207, 83, 0.6), 0 0 50px rgba(147, 51, 234, 0.5);
       letter-spacing: 2px;
       line-height: 1.15;
+      word-break: break-word;
     }
 
     .creed {
       font-family: 'Cinzel', serif;
-      font-size: 1.15rem;
+      font-size: clamp(0.95rem, 2.8vw, 1.15rem);
       font-weight: 800;
       color: var(--gold);
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       margin-top: 1rem;
       text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     }
 
     .sub-creed {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--text-dim);
       font-style: italic;
       margin-top: 0.3rem;
@@ -214,7 +220,7 @@
 
     h2 {
       font-family: 'Cinzel', serif;
-      font-size: 1.85rem;
+      font-size: clamp(1.3rem, 4vw, 1.85rem);
       color: var(--gold-bright);
       border-bottom: 2px solid var(--gold-dark);
       padding-bottom: 0.6rem;
@@ -224,7 +230,7 @@
 
     p {
       margin-bottom: 1.2rem;
-      font-size: 1.08rem;
+      font-size: 1.05rem;
       text-align: justify;
     }
 
@@ -236,6 +242,7 @@
       font-style: italic;
       color: var(--gold-bright);
       border-radius: 0 8px 8px 0;
+      word-break: break-word;
     }
 
     .custom-quote {
@@ -243,13 +250,14 @@
       background: linear-gradient(90deg, rgba(168, 85, 247, 0.15), rgba(245, 207, 83, 0.05));
     }
 
-    /* MAXIMUM SHINY OLTÁŘ */
+    /* OLTÁŘ IKONY */
     .icon-altar {
       position: relative;
       display: inline-block;
       margin: 3.5rem auto 2.5rem auto;
       border-radius: 18px;
       cursor: pointer;
+      max-width: 100%;
     }
 
     .icon-altar::before {
@@ -590,9 +598,9 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 1.4rem;
+      gap: 1.2rem;
       margin: 1.8rem 0;
-      padding: 1.5rem;
+      padding: 1.2rem;
       background: rgba(10, 5, 20, 0.6);
       border-radius: 12px;
       border: 1px dashed var(--gold-dark);
@@ -627,8 +635,8 @@
     }
 
     .candle-stick {
-      width: 22px;
-      height: 60px;
+      width: 20px;
+      height: 55px;
       background: linear-gradient(to right, #e8dfcc, #f7f1e1, #c4b9a0);
       border-radius: 4px;
       box-shadow: inset 0 -4px 6px rgba(0,0,0,0.4);
@@ -693,9 +701,9 @@
       margin-bottom: 0.4rem;
     }
 
-    select, input[type="text"], textarea {
+    select, input[type="text"] {
       width: 100%;
-      padding: 0.7rem 1rem;
+      padding: 0.8rem 1rem;
       background: #17102b;
       border: 1px solid var(--gold-dark);
       border-radius: 6px;
@@ -704,7 +712,7 @@
       font-size: 1rem;
     }
 
-    select:focus, input[type="text"]:focus, textarea:focus {
+    select:focus, input[type="text"]:focus {
       outline: none;
       border-color: var(--gold-bright);
       box-shadow: 0 0 10px rgba(245, 207, 83, 0.4);
@@ -865,7 +873,104 @@
       to { transform: scale(1); opacity: 1; }
     }
 
-    /* Tisková verze odpustku */
+    /* ========================================================= */
+    /* MOBILNÍ OPTIMALIZACE (ZACHOVÁVÁ DESKTOP VZHLED BEZE ZMĚN) */
+    /* ========================================================= */
+    @media (max-width: 768px) {
+      /* Zredukovat rušivé vnější fixní rámečky, aby nebránily ovládání */
+      .codex-frame {
+        border-width: 4px;
+      }
+      .codex-frame-inner {
+        top: 6px; left: 6px; right: 6px; bottom: 6px;
+      }
+      .corner-ornament {
+        font-size: 1.1rem;
+        width: 24px;
+        height: 24px;
+      }
+      .corner-tl { top: 6px; left: 6px; }
+      .corner-tr { top: 6px; right: 6px; }
+      .corner-bl { bottom: 6px; left: 6px; }
+      .corner-br { bottom: 6px; right: 6px; }
+
+      /* Ticker zmenšit písmo */
+      .ticker-wrap {
+        font-size: 0.72rem;
+        padding: 4px 0;
+      }
+
+      .container {
+        padding: 3.5rem 0.8rem 3rem 0.8rem;
+        gap: 2rem;
+      }
+
+      header {
+        padding: 1.5rem 0.5rem 1rem 0.5rem;
+      }
+
+      section {
+        padding: 1.5rem 1.1rem;
+        border-radius: 12px;
+      }
+
+      p {
+        text-align: left;
+        font-size: 0.98rem;
+      }
+
+      .interactive-panel {
+        padding: 1rem;
+      }
+
+      /* Ikona na mobilu - omezit paprsky, ať neroztahují displej */
+      .icon-altar {
+        margin: 1.5rem auto 1.5rem auto;
+      }
+      .icon-altar::before, 
+      .icon-altar::after {
+        width: 120% !important;
+        height: 120% !important;
+      }
+      .icon-ustra {
+        max-width: 260px;
+      }
+
+      /* Odpustek na mobilu */
+      .indulgence-certificate {
+        padding: 1.4rem 1rem 5.5rem 1rem;
+        border-width: 5px;
+      }
+      .indulgence-seal {
+        bottom: 12px;
+        right: 12px;
+        width: 65px;
+        height: 65px;
+        font-size: 0.55rem;
+      }
+
+      /* Modál / Toast */
+      .modal-card {
+        padding: 1.5rem 1.1rem;
+      }
+      .toast {
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        max-width: none;
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .commandments li {
+        padding-left: 2.8rem;
+      }
+      .commandments li::before {
+        font-size: 1.15rem;
+        width: 2rem;
+      }
+    }
+
     @media print {
       body * { visibility: hidden; }
       .indulgence-certificate, .indulgence-certificate * { visibility: visible; }
@@ -1098,11 +1203,11 @@
         <button class="btn-sacred" onclick="generateIndulgence()">Vystavit Pečetěný Odpustek</button>
 
         <div id="certificateBox" class="indulgence-certificate">
-          <h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 0.5rem; color: #8c6d1d;">APOSTOLSKÝ ODPUSTEK USTROCENTRICKÝ</h3>
-          <p style="text-align: center; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.2rem;" id="certSerial">
+          <h3 style="text-align: center; font-size: 1.4rem; margin-bottom: 0.5rem; color: #8c6d1d;">APOSTOLSKÝ ODPUSTEK USTROCENTRICKÝ</h3>
+          <p style="text-align: center; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.2rem;" id="certSerial">
             Vydáno pod patronátem Středu Všehomíra • Reg. č. 67/UST-2026
           </p>
-          <p style="font-size: 1rem; line-height: 1.6; text-align: justify; color: #222;">
+          <p style="font-size: 0.95rem; line-height: 1.6; text-align: justify; color: #222;">
             Tímto se na vědomost dává, že nositel tohoto glejtu, ctihodný/á 
             <strong id="certHolderName" style="text-decoration: underline; color: #8c6d1d;">[JMÉNO]</strong>, 
             byl/a plně zbaven/a všech hříchů zbytečné práce, sportu a vstávání. 
@@ -1210,9 +1315,7 @@
   </footer>
 
   <script>
-    // ==========================================
-    // 1. CHYTRÝ MĚŘIČ DŮLEŽITOSTI (HROMADA VARIANT)
-    // ==========================================
+    // 1. MĚŘIČ DŮLEŽITOSTI
     function checkImportance() {
       const rawInput = document.getElementById('userNameInput').value.trim();
       const res = document.getElementById('importanceResult');
@@ -1225,7 +1328,6 @@
 
       const val = rawInput.toLowerCase();
 
-      // Větvení podle kontextu vstupu
       if (val.includes("ustr") || val === "já" && val.includes("bůh")) {
         const ustrAnswers = [
           `⭐ <strong>${rawInput.toUpperCase()}</strong>: Nekonečno %. Absolutní singularita, střed vesmíru a gravitační studna. Všechny galaxie slouží jen jako peřina pro jeho spánek.`,
@@ -1258,7 +1360,6 @@
         res.innerHTML = selfAnswers[Math.floor(Math.random() * selfAnswers.length)];
       }
       else {
-        // Generická náhodná databáze pro libovolný jiný text
         const generalAnswers = [
           `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>0.000000067 %</strong>.<br><em>Verdikt:</em> Zbytečná entita. V porovnání s leskem Ustrovy pleše jde o matný prach na koberci dějin.`,
           `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>0.000000312 %</strong>.<br><em>Vyhodnocení:</em> Kosmický registr v Ústí nad Labem tento objekt eviduje pouze jako potenciální kořist pro Kvantový Repozicioning.`,
@@ -1269,9 +1370,7 @@
       }
     }
 
-    // ==========================================
-    // 2. CHYTRÁ ZPOVĚDNICE (REAGUJE NA HŘÍCH)
-    // ==========================================
+    // 2. ZPOVĚDNICE
     function grantAbsolution() {
       const rawText = document.getElementById('confessionText').value.trim();
       const res = document.getElementById('confessionResult');
@@ -1335,9 +1434,7 @@
       `;
     }
 
-    // ==========================================
-    // 3. REPOZICIONING (VÍCE VARIANT PRO PŘEDMĚTY)
-    // ==========================================
+    // 3. REPOZICIONING
     const itemOutcomes = {
       kolo: [
         "Převod dokončen: Přehazovačka se sama přeladila na gravitační vlny Ústí. Kolo již stojí před zastavárnou v Předlicích.",
@@ -1383,9 +1480,7 @@
       `;
     }
 
-    // ==========================================
-    // 4. GENERÁTOR ODPUSTKU S UNIKÁTNÍMI TITULY
-    // ==========================================
+    // 4. ODPUSTEK
     function generateIndulgence() {
       const name = document.getElementById('indulgenceName').value.trim();
       if (!name) {
@@ -1412,9 +1507,7 @@
       showToast("📜 Glejt byl zpečetěn a zapsán do nehybné matriky!");
     }
 
-    // ==========================================
-    // 5. OSTATNÍ SYSTÉMY (IKONA, SVÍČKY, KOMPAS, POPUPY)
-    // ==========================================
+    // 5. OBECNÉ INTERAKCE
     function showToast(text) {
       const toast = document.getElementById('toast');
       toast.innerText = text;
@@ -1553,7 +1646,7 @@
       }
     }
 
-    for (let i = 0; i < 45; i++) particles.push(new Spark());
+    for (let i = 0; i < 35; i++) particles.push(new Spark());
 
     function animateIncense() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);

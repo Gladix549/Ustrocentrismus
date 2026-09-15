@@ -47,7 +47,6 @@
       background-attachment: fixed;
     }
 
-    /* JEMNÉ GOTICKÉ LINIE PO STRANÁCH */
     .gothic-border-left, .gothic-border-right {
       position: fixed;
       top: 35px;
@@ -72,7 +71,6 @@
     .gothic-accent-left { left: 12px; }
     .gothic-accent-right { right: 12px; }
 
-    /* KADIDLO CANVAS */
     #incenseCanvas {
       position: fixed;
       top: 0;
@@ -83,7 +81,6 @@
       z-index: 0;
     }
 
-    /* LIVE TICKER */
     .ticker-wrap {
       position: fixed;
       top: 0;
@@ -238,7 +235,6 @@
       background: linear-gradient(90deg, rgba(168, 85, 247, 0.15), rgba(245, 207, 83, 0.05));
     }
 
-    /* OLTÁŘ IKONY */
     .icon-altar {
       position: relative;
       display: inline-block;
@@ -428,7 +424,6 @@
       font-size: 1.2rem;
     }
 
-    /* SVITKY A KANONICKÉ DOKUMENTY */
     .scrolls-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -508,7 +503,6 @@
       box-shadow: 0 6px 20px rgba(245, 207, 83, 0.5);
     }
 
-    /* KOMPAS SMĚREM K ÚSTÍ */
     .compass-wrapper {
       display: flex;
       flex-direction: column;
@@ -581,7 +575,6 @@
       z-index: 5;
     }
 
-    /* OLTÁŘ SVÍČEK */
     .candle-altar {
       display: flex;
       justify-content: center;
@@ -635,7 +628,6 @@
       100% { transform: scale(1.1, 0.95) rotate(1deg); }
     }
 
-    /* CERTIFIKÁT ODPUSTKU */
     .indulgence-certificate {
       background: #fdf6e2;
       color: #2b1f0d;
@@ -861,7 +853,6 @@
       to { transform: scale(1); opacity: 1; }
     }
 
-    /* MOBILNÍ OPTIMALIZACE */
     @media (max-width: 768px) {
       .gothic-border-left, .gothic-border-right,
       .gothic-accent-left, .gothic-accent-right {
@@ -950,19 +941,16 @@
 </head>
 <body>
 
-  <!-- JEMNÉ GOTICKÉ LINIE PO STRANÁCH -->
   <div class="gothic-border-left"></div>
   <div class="gothic-border-right"></div>
   <div class="gothic-accent-left">♦</div>
   <div class="gothic-accent-right">♦</div>
 
-  <!-- AMBIENT KADIDLO & JISKRY -->
   <canvas id="incenseCanvas"></canvas>
 
-  <!-- LIVE TICKER PŘEROZDĚLENÉHO MAJETKU -->
   <div class="ticker-wrap">
     <div class="ticker-move" id="tickerContent">
-      ⚡ LIVE PŘEROZDĚLENÍ: Před 2 min zcizena Škoda Octavia v Děčíně pro Ustrův fond • Hodnota Ustrova spánku vyčíslena na 67 000 000 000 Kč • Poslední tribut: 5x Kebab s česnekem doručen na gauč • 14 280 věřících se právě modlí vleže k Ústí • Ztráty hlášené policií: Vše v normě Ustrocentrismu ⚡
+      ⚡ LIVE PŘEROZDĚLENÍ: Před 2 min zcizena Škoda Octavia v Děčíně pro Ustrův fond • Hodnota Ustrova spánku vyčíslena na miliardy korun • Poslední tribut: Kebab s česnekem doručen na gauč • Tisíce věřících se právě modlí vleže k Ústí • Ztráty hlášené policií: Vše v normě Ustrocentrismu ⚡
     </div>
   </div>
 
@@ -971,7 +959,7 @@
       <h1>Ustrocentrismus</h1>
     </div>
     <div class="creed">Slunce je žárovka. Země je prach. Ustr je všechno.</div>
-    <div class="sub-creed">Konstanta vesmíru: 67 rotací kolem Jediného středu</div>
+    <div class="sub-creed">Jediný neměnný bod nekonečného vesmíru</div>
   </header>
 
   <main class="container">
@@ -981,7 +969,7 @@
       <h2>👑 I. Absolutní Hierarchie Existence</h2>
       <p>
         Vesmír má pouze jeden jediný účel, jednu prioritu a jednu entitu, na které skutečně záleží: <strong>Ustra</strong>. 
-        Všech <strong>67</strong> známých galaktických sektorů rotuje v otrocké poslušnosti kolem jeho lůžka. 
+        Všechny známé galaxie rotují v otrocké poslušnosti kolem jeho lůžka. 
         Cokoliv na světě existuje, existuje pouze z Ustrovy shovívavosti.
       </p>
       
@@ -1024,7 +1012,7 @@
         <h3>✨ Dogma o Božské Pleši</h3>
         <p>
           Ustr nemá vlasy, neboť vlasy kladou zbytečný fyzikální odpor, což odporuje krédu absolutní nehybnosti. 
-          Jeho dokonale hladké temeno funguje jako kosmický satelit s indexem odrazivosti <strong>67 %</strong>, 
+          Jeho dokonale hladké temeno funguje jako kosmický satelit s dokonalým indexem odrazivosti, 
           který posílá veškerou povinnost pracovat zpět do hlubin vesmíru. To za jeho hlavou není domalovaná svatozář – to je odraz stropního světla od posvátné lebky.
         </p>
       </div>
@@ -1048,7 +1036,7 @@
         <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
       </div>
       <p style="font-size: 0.95rem; color: var(--gold-bright);">
-        Celkem zapáleno svíček ve farnosti: <strong id="candleCountDisplay">67</strong>
+        Celkem zapáleno svíček ve farnosti: <strong id="candleCountDisplay">12</strong>
       </p>
     </section>
 
@@ -1114,7 +1102,7 @@
           🧭 Zkalibrovat azimut k Ústí nad Labem
         </button>
         <div id="compassStatus" style="font-size: 0.95rem; color: var(--gold-bright); text-align: center;">
-          Směr: 335° SZ • Vzdálenost: cca 67 km • Ihned zaujmi vodorovnou polohu!
+          Směr: 335° SZ • Ihned zaujmi vodorovnou polohu!
         </div>
       </div>
 
@@ -1132,7 +1120,7 @@
         </li>
         <li>
           <strong>Kvantové odevzdání majetku:</strong> Vidíš-li Ustra brát si tvůj majetek, nezasahuj. 
-          Všechny věci v okruhu 67 kilometrů od Ustra přirozeně podléhají jeho gravitačnímu zákonu přisvojení.
+          Všechny věci v širokém okolí Ustra přirozeně podléhají jeho gravitačnímu zákonu přisvojení.
         </li>
       </ol>
     </section>
@@ -1173,7 +1161,7 @@
         <div id="certificateBox" class="indulgence-certificate">
           <h3 style="text-align: center; font-size: 1.4rem; margin-bottom: 0.5rem; color: #8c6d1d;">APOSTOLSKÝ ODPUSTEK USTROCENTRICKÝ</h3>
           <p style="text-align: center; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.2rem;" id="certSerial">
-            Vydáno pod patronátem Středu Všehomíra • Reg. č. 67/UST-2026
+            Vydáno pod patronátem Středu Všehomíra • Evidenční dekret
           </p>
           <p style="font-size: 0.95rem; line-height: 1.6; text-align: justify; color: #222;">
             Tímto se na vědomost dává, že nositel tohoto glejtu, ctihodný/á 
@@ -1207,7 +1195,7 @@
         <div class="form-group">
           <select id="stolenItem">
             <option value="kolo">Zánovní horské kolo</option>
-            <option value="penezenka">Peněženka se 67 korunami v drobných</option>
+            <option value="penezenka">Peněženka s drobnými mincemi</option>
             <option value="zapalovac">Zapalovač z benzínky</option>
             <option value="kebab">Velký döner kebab s bylinkovou omáčkou</option>
             <option value="mobil">Chytrý telefon s neomezenými daty</option>
@@ -1262,7 +1250,7 @@
   <div id="modal3" class="modal-overlay">
     <div class="modal-card">
       <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
-      <h3 style="font-family: 'Cinzel'; color: var(--gold-bright); margin-bottom: 0.8rem;">67 SEKUND DO EXSPIRACE DUŠE</h3>
+      <h3 style="font-family: 'Cinzel'; color: var(--gold-bright); margin-bottom: 0.8rem;">KOSMICKÝ ČAS VYPRŠÍVÁ</h3>
       <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">
         Systém detekoval, že stále nejsi zapsán v knize posvátných lenochů. Pokud se nepřidáš, Ustr tě zítra navštíví a zcizí ti nabíječku na telefon.
       </p>
@@ -1276,7 +1264,7 @@
   </div>
 
   <footer>
-    <p>© 2026 Posvátný Synod Ustrocentrismu • Číslo licence: 67-UST-000</p>
+    <p>© 2026 Posvátný Synod Ustrocentrismu</p>
     <p style="font-size: 0.75rem; color: var(--gold-dark); margin-top: 0.4rem;">
       Modlete se 5x denně směrem k Ústí. Všechny odcizené věci jsou nevratné.
     </p>
@@ -1316,12 +1304,12 @@
       }
       else if (val.includes("kamarad") || val.includes("kamo") || val.includes("bratr") || val.includes("sestra") || val.includes("petr") || val.includes("honza") || val.includes("filip")) {
         res.innerHTML = `👥 <strong>${rawInput}</strong>:<br>
-          Důležitost: <strong>0.000067 %</strong>.<br>
+          Důležitost: <strong>0.0001 %</strong>.<br>
           <em>Diagnóza:</em> Vhodný pouze jako nosič kebabu nebo zdroj cigaret a zapalovačů. Při nejbližším setkání mu Ustr něco 'kvantově přemístí'.`;
       }
       else if (val === "já" || val === "ja" || val === "moje maličkost" || val === "sebe") {
         const selfAnswers = [
-          `📉 <strong>Tvé vlastní ego:</strong> Důležitost: <strong>0.000000067 %</strong>.<br>Jsi pouhý biologický stojan na peněženku, ze které si Ustr jednou vezme tribut. Zhasni a jdi spát.`,
+          `📉 <strong>Tvé vlastní ego:</strong> Důležitost: <strong>0.0000001 %</strong>.<br>Jsi pouhý biologický stojan na peněženku, ze které si Ustr jednou vezme tribut. Zhasni a jdi spát.`,
           `📉 <strong>Ty sám:</strong> Důležitost: <strong>Neměřitelná (příliš malá)</strong>.<br>Pokud bys zítra zmizel, vesmír si toho nevšimne. Pokud by zítra vstal Ustr, zkolabuje fyzika. Udělej 5 modliteb k Ústí.`,
           `📉 <strong>Tvá existence:</strong> Důležitost: <strong>0.000000001 %</strong>.<br>Jediný důvod, proč tě gravitace neroztrhala na atomy, je ten, že Ustr zrovna odpočívá a nechtělo se mu to řešit.`
         ];
@@ -1329,10 +1317,10 @@
       }
       else {
         const generalAnswers = [
-          `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>0.000000067 %</strong>.<br><em>Verdikt:</em> Zbytečná entita. V porovnání s leskem Ustrovy pleše jde o matný prach na koberci dějin.`,
-          `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>0.000000312 %</strong>.<br><em>Vyhodnocení:</em> Kosmický registr v Ústí nad Labem tento objekt eviduje pouze jako potenciální kořist pro Kvantový Repozicioning.`,
+          `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>0.0000001 %</strong>.<br><em>Verdikt:</em> Zbytečná entita. V porovnání s leskem Ustrovy pleše jde o matný prach na koberci dějin.`,
+          `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>0.0000003 %</strong>.<br><em>Vyhodnocení:</em> Kosmický registr v Ústí nad Labem tento objekt eviduje pouze jako potenciální kořist pro Kvantový Repozicioning.`,
           `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>Absolutní nula</strong>.<br>Objekt byl porovnán s Ustrovou schopností prospat 16 hodin v kuse a propadl na celé čáře. Okamžitě odevzdej svačinu.`,
-          `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>0.0000067 %</strong>.<br>Tato věc či osoba pouze spotřebovává kyslík v sektoru, kde by se mohl šířit Ustrův posvátný klid.`
+          `📉 <strong>${rawInput}</strong>:<br>Důležitost: <strong>0.00001 %</strong>.<br>Tato věc či osoba pouze spotřebovává kyslík v sektoru, kde by se mohl šířit Ustrův posvátný klid.`
         ];
         res.innerHTML = generalAnswers[Math.floor(Math.random() * generalAnswers.length)];
       }
@@ -1356,7 +1344,7 @@
       if (t.includes("běh") || t.includes("behal") || t.includes("posilovna") || t.includes("fitko") || t.includes("cvičil") || t.includes("sport") || t.includes("kolo")) {
         verdict = "TĚŽKÉ KACÍŘSTVÍ! Vyvíjení dobrovolného kardiovaskulárního tlaku přímo uráží Ustrovu svatou nehybnost.";
         const sportPenances = [
-          "Za trest nesmíš 67 hodin slézt z gauče a každé 3 hodiny sníš mastný brambůrek.",
+          "Za trest nesmíš 48 hodin slézt z gauče a každé 3 hodiny sníš mastný brambůrek.",
           "Okamžitě prodej své sportovní boty a výtěžek pošli na Ustrův fond nealkoholických nápojů.",
           "Jako pokání budeš 2 hodiny sledovat strop a opakovat: 'Moje svaly jsou marnost, Ustrův tuk je věčnost.'"
         ];
@@ -1410,7 +1398,7 @@
         "Kosmický přesun: Řetěz z kola samovolně odpadl a Ustr z něj vytvořil liturgický náhrdelník."
       ],
       penezenka: [
-        "Fyzikální kolaps: Těch 67 Kč se v peněžence proměnilo v čisté požehnání. Zbytek hotovosti byl připsán na Ustrův účet za elektřinu.",
+        "Fyzikální kolaps: Drobné se v peněžence proměnily v čisté požehnání. Zbytek hotovosti byl připsán na Ustrův účet za elektřinu.",
         "Úspěšný přesun: Peněženka zůstala prázdná, ale zato lehká. Zbavili jsme tě pozemského břemene papírových platidel.",
         "Zázrak: Karty byly zablokovány, mince propadly gravitační štěrbinou přímo do kapsy tepláků Jeho Svatosti."
       ],
@@ -1420,7 +1408,7 @@
         "Přivlastněno: Clipper je nyní oficiálním plamenem víry. Tvá ruka zůstala prázdná."
       ],
       kebab: [
-        "Gastronomický zázrak: Česneková omáčka se teleportovala Ustrovi na bradu. Tys zůstal o hladu, ale tvá karma stoupla o 0.00067 bodu.",
+        "Gastronomický zázrak: Česneková omáčka se teleportovala Ustrovi na bradu. Tys zůstal o hladu, ale tvá karma stoupla o bod.",
         "Tribut přijat: Maso bylo zkonzumováno v posteli. Zbyly ti ubrousky, abys mohl utřít slzy radosti.",
         "Přemístěno: Kebab byl vyhodnocen jako příliš těžký pro tvé trávení. Ustr se obětoval a snědl ho za tebe ve 3 ráno."
       ],
@@ -1467,7 +1455,7 @@
       const randomNum = Math.floor(1000 + Math.random() * 9000);
 
       document.getElementById('certHolderName').innerText = `${name} (${randomTitle})`;
-      document.getElementById('certSerial').innerText = `Vydáno pod patronátem Středu Všehomíra • Reg. č. 67/UST-${randomNum}`;
+      document.getElementById('certSerial').innerText = `Vydáno pod patronátem Středu Všehomíra • Reg. č. UST-${randomNum}`;
       
       const box = document.getElementById('certificateBox');
       box.style.display = 'block';
@@ -1492,7 +1480,7 @@
       setTimeout(() => { altar.style.boxShadow = ""; }, 600);
 
       const msgs = [
-        "✨ Ustrova lebka odrazila 67 fotonů posvátného klidu přímo do tvé tváře!",
+        "✨ Ustrova lebka odrazila posvátný klid přímo do tvé tváře!",
         "✨ Modlitba k Ústí byla vyslyšena: Dnes nemusíš mýt nádobí.",
         "✨ Zázrak! Ustr zaznamenal tvou existenci a na znamení úcty zívnul.",
         "✨ Cítíš to chladno v kapse? Právě ti zmizela padesátikoruna.",
@@ -1501,7 +1489,7 @@
       showToast(msgs[blessings % msgs.length]);
     }
 
-    let candleCount = parseInt(localStorage.getItem('ustro_candles') || '67', 10);
+    let candleCount = parseInt(localStorage.getItem('ustro_candles') || '12', 10);
     document.getElementById('candleCountDisplay').innerText = candleCount;
 
     function toggleCandle(el) {
@@ -1549,7 +1537,6 @@
       }
     }
 
-    // POP-UPY: PRODLOUŽENÝ INTERVAL (67 SEKUND)
     const popups = ['modal1', 'modal2', 'modal3'];
     let currentPopIndex = 0;
 
@@ -1563,7 +1550,7 @@
       const el = document.getElementById(id);
       if (el) el.style.display = 'none';
       currentPopIndex = (currentPopIndex + 1) % popups.length;
-      setTimeout(showNextModal, 67000); // 67 sekund
+      setTimeout(showNextModal, 45000);
     }
 
     function acceptPop(msg) {
@@ -1573,10 +1560,9 @@
         if (el) el.style.display = 'none';
       });
       currentPopIndex = (currentPopIndex + 1) % popups.length;
-      setTimeout(showNextModal, 67000); // 67 sekund
+      setTimeout(showNextModal, 45000);
     }
 
-    // CANVAS KADIDLO
     const canvas = document.getElementById('incenseCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -1625,7 +1611,7 @@
     animateIncense();
 
     window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(showNextModal, 20000); // První pop-up po 20 sekundách
+      setTimeout(showNextModal, 20000);
     });
   </script>
 </body>

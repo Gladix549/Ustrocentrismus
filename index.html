@@ -47,42 +47,30 @@
       background-attachment: fixed;
     }
 
-    /* KODEXOVÝ FIXNÍ RÁM A ORNAMENTY */
-    .codex-frame {
+    /* JEMNÉ GOTICKÉ LINIE PO STRANÁCH */
+    .gothic-border-left, .gothic-border-right {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border: 10px solid transparent;
-      border-image: linear-gradient(to bottom right, var(--gold), var(--gold-dark), var(--gold-bright)) 10;
+      top: 35px;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--gold) 15%, rgba(245, 207, 83, 0.3) 85%, transparent);
       pointer-events: none;
-      z-index: 999;
+      z-index: 850;
     }
+    .gothic-border-left { left: 16px; }
+    .gothic-border-right { right: 16px; }
 
-    .codex-frame-inner {
+    .gothic-accent-left, .gothic-accent-right {
       position: fixed;
-      top: 14px; left: 14px; right: 14px; bottom: 14px;
-      border: 1px solid rgba(245, 207, 83, 0.3);
-      pointer-events: none;
-      z-index: 999;
-    }
-
-    .corner-ornament {
-      position: fixed;
-      width: 48px;
-      height: 48px;
-      pointer-events: none;
-      z-index: 1000;
+      top: 45px;
+      font-size: 0.8rem;
       color: var(--gold-bright);
-      font-size: 1.8rem;
-      line-height: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-shadow: 0 0 10px var(--gold);
+      pointer-events: none;
+      z-index: 850;
+      text-shadow: 0 0 8px var(--gold);
     }
-    .corner-tl { top: 12px; left: 12px; }
-    .corner-tr { top: 12px; right: 12px; }
-    .corner-bl { bottom: 12px; left: 12px; }
-    .corner-br { bottom: 12px; right: 12px; }
+    .gothic-accent-left { left: 12px; }
+    .gothic-accent-right { right: 12px; }
 
     /* KADIDLO CANVAS */
     #incenseCanvas {
@@ -873,28 +861,13 @@
       to { transform: scale(1); opacity: 1; }
     }
 
-    /* ========================================================= */
-    /* MOBILNÍ OPTIMALIZACE (ZACHOVÁVÁ DESKTOP VZHLED BEZE ZMĚN) */
-    /* ========================================================= */
+    /* MOBILNÍ OPTIMALIZACE */
     @media (max-width: 768px) {
-      /* Zredukovat rušivé vnější fixní rámečky, aby nebránily ovládání */
-      .codex-frame {
-        border-width: 4px;
+      .gothic-border-left, .gothic-border-right,
+      .gothic-accent-left, .gothic-accent-right {
+        display: none;
       }
-      .codex-frame-inner {
-        top: 6px; left: 6px; right: 6px; bottom: 6px;
-      }
-      .corner-ornament {
-        font-size: 1.1rem;
-        width: 24px;
-        height: 24px;
-      }
-      .corner-tl { top: 6px; left: 6px; }
-      .corner-tr { top: 6px; right: 6px; }
-      .corner-bl { bottom: 6px; left: 6px; }
-      .corner-br { bottom: 6px; right: 6px; }
 
-      /* Ticker zmenšit písmo */
       .ticker-wrap {
         font-size: 0.72rem;
         padding: 4px 0;
@@ -923,7 +896,6 @@
         padding: 1rem;
       }
 
-      /* Ikona na mobilu - omezit paprsky, ať neroztahují displej */
       .icon-altar {
         margin: 1.5rem auto 1.5rem auto;
       }
@@ -936,7 +908,6 @@
         max-width: 260px;
       }
 
-      /* Odpustek na mobilu */
       .indulgence-certificate {
         padding: 1.4rem 1rem 5.5rem 1rem;
         border-width: 5px;
@@ -949,7 +920,6 @@
         font-size: 0.55rem;
       }
 
-      /* Modál / Toast */
       .modal-card {
         padding: 1.5rem 1.1rem;
       }
@@ -980,13 +950,11 @@
 </head>
 <body>
 
-  <!-- KODEXOVÝ FIXNÍ RÁM A ORNAMENTY -->
-  <div class="codex-frame"></div>
-  <div class="codex-frame-inner"></div>
-  <div class="corner-ornament corner-tl">⚜</div>
-  <div class="corner-ornament corner-tr">⚜</div>
-  <div class="corner-ornament corner-bl">⚜</div>
-  <div class="corner-ornament corner-br">⚜</div>
+  <!-- JEMNÉ GOTICKÉ LINIE PO STRANÁCH -->
+  <div class="gothic-border-left"></div>
+  <div class="gothic-border-right"></div>
+  <div class="gothic-accent-left">♦</div>
+  <div class="gothic-accent-right">♦</div>
 
   <!-- AMBIENT KADIDLO & JISKRY -->
   <canvas id="incenseCanvas"></canvas>
@@ -1581,6 +1549,7 @@
       }
     }
 
+    // POP-UPY: PRODLOUŽENÝ INTERVAL (67 SEKUND)
     const popups = ['modal1', 'modal2', 'modal3'];
     let currentPopIndex = 0;
 
@@ -1594,7 +1563,7 @@
       const el = document.getElementById(id);
       if (el) el.style.display = 'none';
       currentPopIndex = (currentPopIndex + 1) % popups.length;
-      setTimeout(showNextModal, 20000);
+      setTimeout(showNextModal, 67000); // 67 sekund
     }
 
     function acceptPop(msg) {
@@ -1604,7 +1573,7 @@
         if (el) el.style.display = 'none';
       });
       currentPopIndex = (currentPopIndex + 1) % popups.length;
-      setTimeout(showNextModal, 20000);
+      setTimeout(showNextModal, 67000); // 67 sekund
     }
 
     // CANVAS KADIDLO
@@ -1656,7 +1625,7 @@
     animateIncense();
 
     window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(showNextModal, 6000);
+      setTimeout(showNextModal, 20000); // První pop-up po 20 sekundách
     });
   </script>
 </body>

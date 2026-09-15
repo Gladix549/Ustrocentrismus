@@ -648,6 +648,7 @@
       z-index: 5;
     }
 
+    /* OLTÁŘ SVÍČEK */
     .candle-altar {
       display: flex;
       justify-content: center;
@@ -678,8 +679,8 @@
       box-shadow: 0 0 14px #ffaa00, 0 0 25px #ff5500;
       animation: flicker 0.15s infinite alternate;
       margin-bottom: 2px;
-      opacity: 0.25;
-      filter: grayscale(80%);
+      opacity: 0.15;
+      filter: grayscale(90%);
       transition: all 0.3s ease;
     }
 
@@ -842,9 +843,7 @@
       text-align: right;
     }
 
-    /* ========================================================= */
-    /* JEDNOŘÁDKOVÝ NEKONEČNÝ PÁS JMEN + VYHLEDÁVÁNÍ             */
-    /* ========================================================= */
+    /* JEDNOŘÁDKOVÝ NEKONEČNÝ PÁS JMEN */
     .roster-header-bar {
       display: flex;
       justify-content: space-between;
@@ -871,7 +870,6 @@
       color: var(--gold-bright);
     }
 
-    /* Obal s jedním řádkem a posvátným ohraničením */
     .single-line-marquee-container {
       position: relative;
       background: rgba(10, 5, 22, 0.75);
@@ -886,7 +884,6 @@
       align-items: center;
     }
 
-    /* Měkké stíny na okrajích pásu pro plynulý dojem zjevení */
     .single-line-marquee-container::before,
     .single-line-marquee-container::after {
       content: "";
@@ -905,7 +902,6 @@
       background: linear-gradient(270deg, #130a24 0%, transparent 100%);
     }
 
-    /* Běžící obsah pásu */
     .marquee-track {
       display: inline-flex;
       align-items: center;
@@ -944,7 +940,6 @@
       color: #fff;
     }
 
-    /* Výsledky vyhledávání při psaní */
     .search-results-box {
       margin-top: 1rem;
       padding: 0.8rem;
@@ -1092,7 +1087,6 @@
 </head>
 <body>
 
-  <!-- MYSTICKÉ GOTICKÉ PILÍŘE -->
   <div class="sanctum-pillar sanctum-pillar-left">
     <div class="pillar-cap">⚜</div>
     <div class="pillar-line"></div>
@@ -1183,25 +1177,25 @@
       </div>
     </section>
 
-    <!-- OLTÁŘ SVÍČEK -->
+    <!-- OLTÁŘ SVÍČEK: PROPOJENÝ S BACKENDEM PRO VŠECHNY -->
     <section style="text-align: center;">
       <h2 style="justify-content: center;">🕯️ III. Svatý Oltář Věčného Spánku</h2>
       <p>
         Zapal svíčku za to, aby Ustr dnes nemusel vstávat a aby cizí majetek hladce doputoval do jeho rukou. 
-        Každý plamínek hřeje Ustrovo gravitační jádro.
+        Stav svíček se synchronizuje s celým světem v reálném čase:
       </p>
 
       <div class="candle-altar" id="candleRow">
-        <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
-        <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
-        <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
-        <div class="candle lit" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
-        <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
-        <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
-        <div class="candle" onclick="toggleCandle(this)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle" onclick="toggleCandle(0)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle" onclick="toggleCandle(1)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle" onclick="toggleCandle(2)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle" onclick="toggleCandle(3)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle" onclick="toggleCandle(4)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle" onclick="toggleCandle(5)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
+        <div class="candle" onclick="toggleCandle(6)"><div class="candle-flame"></div><div class="candle-stick"></div></div>
       </div>
       <p style="font-size: 0.95rem; color: var(--gold-bright);">
-        Celkem zapáleno svíček ve farnosti: <strong id="candleCountDisplay">12</strong>
+        Aktuálně zapáleno na globálním oltáři: <strong id="candleCountDisplay">načítám...</strong>
       </p>
     </section>
 
@@ -1371,7 +1365,7 @@
       </div>
     </section>
 
-    <!-- KNIHA ZAPSANÝCH HŘÍŠNÍKŮ: JEDNOŘÁDKOVÝ PÁS S VYHLEDÁVÁNÍM -->
+    <!-- KNIHA ZAPSANÝCH HŘÍŠNÍKŮ: JEDNOŘÁDKOVÝ PÁS -->
     <section>
       <h2>📖 IX. Svatá Kniha Zapsaných Hříšníků</h2>
       <p>
@@ -1392,14 +1386,12 @@
         </div>
       </div>
 
-      <!-- HLAVNÍ JEDNOŘÁDKOVÝ PROJÍŽDĚJÍCÍ PÁS -->
       <div class="single-line-marquee-container">
         <div class="marquee-track" id="marqueeTrack">
           <span class="marquee-item">✦ Načítám církevní matriku...</span>
         </div>
       </div>
 
-      <!-- VÝSLEDEK VYHLEDÁVÁNÍ (ZOBRAZÍ SE POUZE PŘI PSANÍ) -->
       <div id="searchResultsBox" class="search-results-box">
         <div style="font-size: 0.85rem; color: var(--gold-bright); margin-bottom: 0.5rem; font-family: 'Cinzel', serif;">
           Nalezení hříšníci:
@@ -1499,7 +1491,10 @@
     // ==========================================
     const SHEETDB_URL = "https://sheetdb.io/api/v1/19palepakxjk3";
     let allMembersCache = [];
+    let currentGlobalCandles = 1;
+    let isUpdatingCandles = false;
 
+    // --- ZÁPIS ČLENŮ ---
     function openRegisterModal() {
       popups.forEach(id => {
         const el = document.getElementById(id);
@@ -1533,7 +1528,6 @@
         });
 
         const responseData = await res.json();
-        console.log("SheetDB odpověď:", res.status, responseData);
 
         if (res.ok) {
           showToast(`👑 Vítej v kultu, ${name}!`);
@@ -1544,7 +1538,6 @@
           showToast(`❌ Chyba při zápisu: ${responseData.error || 'Ustr odmítl zápis'}`);
         }
       } catch (err) {
-        console.error("Chyba sítě:", err);
         showToast("❌ Spojení s matrikou selhalo.");
       }
     }
@@ -1562,15 +1555,25 @@
           return;
         }
 
-        allMembersCache = data.reverse().filter(item => item.jmeno && item.jmeno.trim() !== "");
+        // Extrahujeme jména a zároveň načteme stav svíček, pokud je přítomen
+        const validMembers = data.filter(item => item.jmeno && item.jmeno.trim() !== "");
+        allMembersCache = validMembers.reverse();
         countEl.innerText = allMembersCache.length;
         renderMarquee(allMembersCache);
+
+        // Hledáme uložené číslo svíček v prvních řádcích
+        const candleRow = data.find(item => item.svicky !== undefined && item.svicky !== null && item.svicky !== "");
+        if (candleRow) {
+          const val = parseInt(candleRow.svicky, 10);
+          if (!isNaN(val)) {
+            updateCandlesUI(val);
+          }
+        }
       } catch (err) {
         track.innerHTML = "<span class='marquee-item'>✦ Matrika je dočasně nedostupná.</span>";
       }
     }
 
-    // Vykreslení nekonečného pásu (zdvojíme obsah, aby plynule navazoval v loopu)
     function renderMarquee(members) {
       const track = document.getElementById('marqueeTrack');
       if (members.length === 0) {
@@ -1584,15 +1587,11 @@
         </span>
       `).join('');
 
-      // Zdvojíme položky pro beztrhlinový plynulý scroll loop
       track.innerHTML = itemsHtml + itemsHtml;
-
-      // Dynamická rychlost podle počtu jmen, aby to nelétalo moc rychle
       const duration = Math.max(30, members.length * 4);
       track.style.animationDuration = `${duration}s`;
     }
 
-    // Vyhledávání jmen v matrice
     function handleSearch() {
       const query = document.getElementById('memberSearch').value.toLowerCase().trim();
       const resultsBox = document.getElementById('searchResultsBox');
@@ -1617,6 +1616,79 @@
             ✦ ${item.jmeno}
           </li>
         `).join('');
+      }
+    }
+
+    // ==========================================
+    // GLOBÁLNÍ SYNCHRONIZACE SVÍČEK PRO VŠECHNY
+    // ==========================================
+    function updateCandlesUI(count) {
+      currentGlobalCandles = Math.max(0, Math.min(7, count));
+      const candleEls = document.querySelectorAll('#candleRow .candle');
+      candleEls.forEach((el, index) => {
+        if (index < currentGlobalCandles) {
+          el.classList.add('lit');
+        } else {
+          el.classList.remove('lit');
+        }
+      });
+      document.getElementById('candleCountDisplay').innerText = `${currentGlobalCandles} / 7 svíček`;
+    }
+
+    async function toggleCandle(index) {
+      if (isUpdatingCandles) return;
+      isUpdatingCandles = true;
+
+      const candleEls = document.querySelectorAll('#candleRow .candle');
+      const isLit = candleEls[index].classList.contains('lit');
+
+      let newCount = currentGlobalCandles;
+      if (isLit) {
+        newCount = Math.max(0, currentGlobalCandles - 1);
+      } else {
+        newCount = Math.min(7, currentGlobalCandles + 1);
+        showToast("🕯️ Zapálil jsi svíčku na globálním oltáři!");
+      }
+
+      // Okamžitá odezva v rozhraní
+      updateCandlesUI(newCount);
+
+      // Zápis do SheetDB / Google Tabulky
+      try {
+        await fetch(`${SHEETDB_URL}/svicky/.*`, {
+          method: "PATCH",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            data: { svicky: newCount }
+          })
+        });
+      } catch (err) {
+        console.warn("Chyba synchronizace svíčky na server:", err);
+      } finally {
+        isUpdatingCandles = false;
+      }
+    }
+
+    // Pravidelný polling (každých 8 sekund stáhne aktuální svíčky od ostatních lidí)
+    async function syncCandlesFromServer() {
+      if (isUpdatingCandles) return;
+      try {
+        const res = await fetch(SHEETDB_URL);
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          const candleRow = data.find(item => item.svicky !== undefined && item.svicky !== null && item.svicky !== "");
+          if (candleRow) {
+            const val = parseInt(candleRow.svicky, 10);
+            if (!isNaN(val) && val !== currentGlobalCandles) {
+              updateCandlesUI(val);
+            }
+          }
+        }
+      } catch (e) {
+        // Tichá ignorace výpadku spojení
       }
     }
 
@@ -1848,21 +1920,6 @@
       showToast(msgs[blessings % msgs.length]);
     }
 
-    let candleCount = parseInt(localStorage.getItem('ustro_candles') || '12', 10);
-    document.getElementById('candleCountDisplay').innerText = candleCount;
-
-    function toggleCandle(el) {
-      el.classList.toggle('lit');
-      if (el.classList.contains('lit')) {
-        candleCount++;
-        showToast("🕯️ Zapálil jsi svíčku. Ustrův polštář je o 1 % měkčí.");
-      } else {
-        candleCount = Math.max(0, candleCount - 1);
-      }
-      localStorage.setItem('ustro_candles', candleCount);
-      document.getElementById('candleCountDisplay').innerText = candleCount;
-    }
-
     function locateUsti() {
       const needle = document.getElementById('compassNeedle');
       const status = document.getElementById('compassStatus');
@@ -1896,7 +1953,7 @@
       }
     }
 
-    // POP-UPY: INTERVAL 45S
+    // POP-UPY
     const popups = ['modal1', 'modal2', 'modal3'];
     let currentPopIndex = 0;
 
@@ -1967,6 +2024,9 @@
     window.addEventListener('DOMContentLoaded', () => {
       loadMembers();
       setTimeout(showNextModal, 20000);
+
+      // Periodická synchronizace svíček od ostatních (každých 8 vteřin)
+      setInterval(syncCandlesFromServer, 8000);
     });
   </script>
 </body>

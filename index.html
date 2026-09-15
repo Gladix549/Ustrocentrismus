@@ -842,80 +842,126 @@
       text-align: right;
     }
 
-    /* POSVÁTNÝ SVITEK MATRIKY */
-    .scroll-container {
-      background: rgba(10, 6, 22, 0.7);
-      border: 1px solid var(--gold-dark);
-      border-radius: 10px;
-      padding: 1rem;
-      max-height: 260px;
-      overflow-y: auto;
-      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
-    }
-
-    .scroll-container::-webkit-scrollbar {
-      width: 6px;
-    }
-    .scroll-container::-webkit-scrollbar-track {
-      background: rgba(15, 10, 30, 0.5);
-      border-radius: 3px;
-    }
-    .scroll-container::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, var(--gold-dark), var(--gold-bright));
-      border-radius: 3px;
-      box-shadow: 0 0 6px rgba(245, 207, 83, 0.5);
-    }
-
-    .members-roster {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 0.6rem;
-      padding: 0;
-      margin: 0;
-    }
-
-    .member-badge {
-      background: rgba(245, 207, 83, 0.06);
-      border-left: 2px solid var(--gold);
-      padding: 0.4rem 0.8rem;
-      border-radius: 0 6px 6px 0;
-      color: var(--gold-bright);
-      font-family: 'Cinzel', serif;
-      font-size: 0.88rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition: all 0.2s ease;
-    }
-
-    .member-badge:hover {
-      background: rgba(245, 207, 83, 0.15);
-      transform: translateX(3px);
-      color: #fff;
-    }
-
-    .member-count-bar {
+    /* ========================================================= */
+    /* JEDNOŘÁDKOVÝ NEKONEČNÝ PÁS JMEN + VYHLEDÁVÁNÍ             */
+    /* ========================================================= */
+    .roster-header-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-bottom: 0.8rem;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
     }
 
-    .member-search-input {
-      width: auto;
-      min-width: 180px;
-      padding: 0.4rem 0.8rem;
-      font-size: 0.85rem;
-      background: #120a22;
+    .roster-search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-grow: 1;
+      max-width: 380px;
+    }
+
+    .roster-search-box input {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      background: #140b26;
       border: 1px solid var(--gold-dark);
-      border-radius: 4px;
+      border-radius: 6px;
       color: var(--gold-bright);
+    }
+
+    /* Obal s jedním řádkem a posvátným ohraničením */
+    .single-line-marquee-container {
+      position: relative;
+      background: rgba(10, 5, 22, 0.75);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 0.6rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.9), 0 0 15px rgba(245, 207, 83, 0.15);
+      height: 52px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Měkké stíny na okrajích pásu pro plynulý dojem zjevení */
+    .single-line-marquee-container::before,
+    .single-line-marquee-container::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 35px;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .single-line-marquee-container::before {
+      left: 0;
+      background: linear-gradient(90deg, #130a24 0%, transparent 100%);
+    }
+    .single-line-marquee-container::after {
+      right: 0;
+      background: linear-gradient(270deg, #130a24 0%, transparent 100%);
+    }
+
+    /* Běžící obsah pásu */
+    .marquee-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.8rem;
+      animation: rosterScroll 45s linear infinite;
+      will-change: transform;
+    }
+
+    .single-line-marquee-container:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes rosterScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      color: var(--gold-bright);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(245, 207, 83, 0.08);
+      padding: 0.25rem 0.8rem;
+      border-radius: 4px;
+      border: 1px solid rgba(245, 207, 83, 0.3);
+      cursor: default;
+      transition: all 0.2s ease;
+    }
+
+    .marquee-item:hover {
+      background: rgba(245, 207, 83, 0.2);
+      border-color: var(--gold-bright);
+      color: #fff;
+    }
+
+    /* Výsledky vyhledávání při psaní */
+    .search-results-box {
+      margin-top: 1rem;
+      padding: 0.8rem;
+      background: rgba(14, 8, 30, 0.9);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .search-results-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      list-style: none;
+      max-height: 120px;
+      overflow-y: auto;
     }
 
     footer {
@@ -1027,6 +1073,14 @@
       .toast { left: 15px; right: 15px; bottom: 15px; max-width: none; padding: 1rem; font-size: 0.9rem; }
       .commandments li { padding-left: 2.8rem; }
       .commandments li::before { font-size: 1.15rem; width: 2rem; }
+      
+      .roster-header-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .roster-search-box {
+        max-width: 100%;
+      }
     }
 
     @media print {
@@ -1317,33 +1371,43 @@
       </div>
     </section>
 
-    <!-- KNIHA ZAPSANÝCH HŘÍŠNÍKŮ -->
+    <!-- KNIHA ZAPSANÝCH HŘÍŠNÍKŮ: JEDNOŘÁDKOVÝ PÁS S VYHLEDÁVÁNÍM -->
     <section>
       <h2>📖 IX. Svatá Kniha Zapsaných Hříšníků</h2>
       <p>
-        Věčný svitek duší, které se dobrovolně zapsaly do Ustrovy matriky a podlehly gravitačnímu zákonu:
+        Nekonečný proud duší, které se podřídily Ustrocentrismu. Přejeď myší nebo klepni pro pozastavení pásu:
       </p>
 
-      <div class="member-count-bar">
-        <div style="font-size: 0.9rem; color: var(--gold);">
-          Evidováno duší: <strong id="membersTotalCount">0</strong>
+      <div class="roster-header-bar">
+        <div style="font-size: 0.95rem; color: var(--gold); font-family: 'Cinzel', serif;">
+          Evidováno v matrice: <strong id="membersTotalCount">0</strong> duší
         </div>
-        <input 
-          type="text" 
-          id="memberSearch" 
-          class="member-search-input" 
-          placeholder="Hledat hříšníka..." 
-          oninput="filterMembers()"
-        >
+        <div class="roster-search-box">
+          <input 
+            type="text" 
+            id="memberSearch" 
+            placeholder="🔍 Vyhledat své jméno v matrice..." 
+            oninput="handleSearch()"
+          >
+        </div>
       </div>
 
-      <div class="scroll-container">
-        <ul id="membersList" class="members-roster">
-          <li style="color: var(--gold-bright); font-style: italic;">Načítám církevní matriku...</li>
-        </ul>
+      <!-- HLAVNÍ JEDNOŘÁDKOVÝ PROJÍŽDĚJÍCÍ PÁS -->
+      <div class="single-line-marquee-container">
+        <div class="marquee-track" id="marqueeTrack">
+          <span class="marquee-item">✦ Načítám církevní matriku...</span>
+        </div>
       </div>
 
-      <div style="text-align: center; margin-top: 1.5rem;">
+      <!-- VÝSLEDEK VYHLEDÁVÁNÍ (ZOBRAZÍ SE POUZE PŘI PSANÍ) -->
+      <div id="searchResultsBox" class="search-results-box">
+        <div style="font-size: 0.85rem; color: var(--gold-bright); margin-bottom: 0.5rem; font-family: 'Cinzel', serif;">
+          Nalezení hříšníci:
+        </div>
+        <ul id="searchResultsList" class="search-results-list"></ul>
+      </div>
+
+      <div style="text-align: center; margin-top: 1.8rem;">
         <button class="btn-sacred" style="width: auto; padding: 0.7rem 2rem;" onclick="openRegisterModal()">
           ✍️ Připsat své jméno do Knihy
         </button>
@@ -1486,45 +1550,74 @@
     }
 
     async function loadMembers() {
-      const list = document.getElementById('membersList');
+      const track = document.getElementById('marqueeTrack');
       const countEl = document.getElementById('membersTotalCount');
       try {
         const res = await fetch(SHEETDB_URL);
         const data = await res.json();
 
         if (!data || data.length === 0) {
-          list.innerHTML = "<li style='color: var(--text-dim);'>Zatím se nikdo neodvážil zapsat.</li>";
+          track.innerHTML = "<span class='marquee-item'>✦ Zatím se nikdo neodvážil zapsat. Buď první!</span>";
           countEl.innerText = "0";
           return;
         }
 
         allMembersCache = data.reverse().filter(item => item.jmeno && item.jmeno.trim() !== "");
         countEl.innerText = allMembersCache.length;
-        renderMembers(allMembersCache);
+        renderMarquee(allMembersCache);
       } catch (err) {
-        list.innerHTML = "<li style='color: var(--text-dim);'>Matrika je dočasně nedostupná.</li>";
+        track.innerHTML = "<span class='marquee-item'>✦ Matrika je dočasně nedostupná.</span>";
       }
     }
 
-    function renderMembers(members) {
-      const list = document.getElementById('membersList');
+    // Vykreslení nekonečného pásu (zdvojíme obsah, aby plynule navazoval v loopu)
+    function renderMarquee(members) {
+      const track = document.getElementById('marqueeTrack');
       if (members.length === 0) {
-        list.innerHTML = "<li style='color: var(--text-dim);'>Žádný takový hříšník nebyl nalezen.</li>";
+        track.innerHTML = "<span class='marquee-item'>✦ Matrika zeje prázdnotou.</span>";
         return;
       }
-      list.innerHTML = members.map(item => `
-        <li class="member-badge" title="${item.jmeno}">
-          <span>✦</span> ${item.jmeno}
-        </li>
+
+      const itemsHtml = members.map(item => `
+        <span class="marquee-item" title="${item.jmeno}">
+          ✦ ${item.jmeno}
+        </span>
       `).join('');
+
+      // Zdvojíme položky pro beztrhlinový plynulý scroll loop
+      track.innerHTML = itemsHtml + itemsHtml;
+
+      // Dynamická rychlost podle počtu jmen, aby to nelétalo moc rychle
+      const duration = Math.max(30, members.length * 4);
+      track.style.animationDuration = `${duration}s`;
     }
 
-    function filterMembers() {
+    // Vyhledávání jmen v matrice
+    function handleSearch() {
       const query = document.getElementById('memberSearch').value.toLowerCase().trim();
-      const filtered = allMembersCache.filter(item => 
+      const resultsBox = document.getElementById('searchResultsBox');
+      const resultsList = document.getElementById('searchResultsList');
+
+      if (!query) {
+        resultsBox.style.display = 'none';
+        resultsList.innerHTML = '';
+        return;
+      }
+
+      const matches = allMembersCache.filter(item => 
         item.jmeno.toLowerCase().includes(query)
       );
-      renderMembers(filtered);
+
+      resultsBox.style.display = 'block';
+      if (matches.length === 0) {
+        resultsList.innerHTML = "<li style='color: var(--text-dim); font-size: 0.9rem;'>Žádný hříšník s tímto jménem nebyl v matrice nalezen.</li>";
+      } else {
+        resultsList.innerHTML = matches.map(item => `
+          <li class="marquee-item" style="background: rgba(245, 207, 83, 0.18); border-color: var(--gold-bright);">
+            ✦ ${item.jmeno}
+          </li>
+        `).join('');
+      }
     }
 
     // ==========================================

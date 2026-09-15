@@ -47,9 +47,7 @@
       background-attachment: fixed;
     }
 
-    /* ========================================================= */
-    /* MYSTICKÉ GOTICKÉ PILÍŘE (SVATÝ SLOUPOVÝ CHRÁM)            */
-    /* ========================================================= */
+    /* MYSTICKÉ GOTICKÉ PILÍŘE */
     .sanctum-pillar {
       position: fixed;
       top: 35px;
@@ -64,15 +62,9 @@
       padding: 12px 0 20px 0;
     }
 
-    .sanctum-pillar-left {
-      left: 10px;
-    }
+    .sanctum-pillar-left { left: 10px; }
+    .sanctum-pillar-right { right: 10px; }
 
-    .sanctum-pillar-right {
-      right: 10px;
-    }
-
-    /* Vnitřní světelný sloup s pulzem */
     .pillar-line {
       position: absolute;
       top: 35px;
@@ -94,7 +86,6 @@
       animation: pillarPulse 4s ease-in-out infinite alternate;
     }
 
-    /* Vnější stínové gotické linie */
     .sanctum-pillar::before {
       content: "";
       position: absolute;
@@ -116,7 +107,6 @@
       }
     }
 
-    /* Ozdobné gotické hlavice nahoře, uprostřed a dole */
     .pillar-cap {
       font-size: 1.15rem;
       color: var(--gold-bright);
@@ -235,6 +225,30 @@
       color: var(--text-dim);
       font-style: italic;
       margin-top: 0.3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-header-join {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: linear-gradient(135deg, #a855f7, var(--gold));
+      color: #0b0517;
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 1rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 2px solid var(--gold-bright);
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(245, 207, 83, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    .btn-header-join:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(245, 207, 83, 0.9);
+      background: linear-gradient(135deg, var(--gold-bright), #ffffff);
     }
 
     section {
@@ -466,11 +480,6 @@
       font-style: italic;
       text-shadow: 0 0 10px rgba(245, 207, 83, 0.6);
       transition: color 0.3s ease;
-    }
-
-    .icon-altar:hover + .icon-caption {
-      color: #ffffff;
-      text-shadow: 0 0 20px #ffe885, 0 0 35px #ffffff;
     }
 
     .holy-bald-card {
@@ -833,6 +842,36 @@
       text-align: right;
     }
 
+    /* KNIHA HŘÍŠNÍKŮ (ČLENOVÉ) */
+    .members-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+      list-style: none;
+    }
+
+    .member-tag {
+      background: rgba(245, 207, 83, 0.1);
+      border: 1px solid var(--gold-dark);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      color: var(--gold-bright);
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .member-tag:hover {
+      border-color: var(--gold-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(245, 207, 83, 0.4);
+    }
+
     footer {
       text-align: center;
       font-size: 0.85rem;
@@ -917,89 +956,31 @@
       to { transform: scale(1); opacity: 1; }
     }
 
-    /* MOBILNÍ CHOVÁNÍ PILÍŘŮ */
     @media (max-width: 768px) {
-      .sanctum-pillar {
-        width: 12px;
-      }
+      .sanctum-pillar { width: 12px; }
       .sanctum-pillar-left { left: 2px; }
       .sanctum-pillar-right { right: 2px; }
-
       .pillar-cap { font-size: 0.8rem; }
-      .pillar-mid { display: none; }
-      .sanctum-pillar::before { display: none; }
+      .pillar-mid, .sanctum-pillar::before { display: none; }
 
-      .ticker-wrap {
-        font-size: 0.72rem;
-        padding: 4px 0;
-      }
+      .ticker-wrap { font-size: 0.72rem; padding: 4px 0; }
+      .container { padding: 3.5rem 1rem 3rem 1rem; gap: 2rem; }
+      header { padding: 1.5rem 0.5rem 1rem 0.5rem; }
+      section { padding: 1.5rem 1.1rem; border-radius: 12px; }
+      p { text-align: left; font-size: 0.98rem; }
+      .interactive-panel { padding: 1rem; }
 
-      .container {
-        padding: 3.5rem 1rem 3rem 1rem;
-        gap: 2rem;
-      }
+      .icon-altar { margin: 1.5rem auto 1.5rem auto; }
+      .icon-altar::before, .icon-altar::after { width: 120% !important; height: 120% !important; }
+      .icon-ustra { max-width: 260px; }
 
-      header {
-        padding: 1.5rem 0.5rem 1rem 0.5rem;
-      }
+      .indulgence-certificate { padding: 1.4rem 1rem 5.5rem 1rem; border-width: 5px; }
+      .indulgence-seal { bottom: 12px; right: 12px; width: 65px; height: 65px; font-size: 0.55rem; }
 
-      section {
-        padding: 1.5rem 1.1rem;
-        border-radius: 12px;
-      }
-
-      p {
-        text-align: left;
-        font-size: 0.98rem;
-      }
-
-      .interactive-panel {
-        padding: 1rem;
-      }
-
-      .icon-altar {
-        margin: 1.5rem auto 1.5rem auto;
-      }
-      .icon-altar::before, 
-      .icon-altar::after {
-        width: 120% !important;
-        height: 120% !important;
-      }
-      .icon-ustra {
-        max-width: 260px;
-      }
-
-      .indulgence-certificate {
-        padding: 1.4rem 1rem 5.5rem 1rem;
-        border-width: 5px;
-      }
-      .indulgence-seal {
-        bottom: 12px;
-        right: 12px;
-        width: 65px;
-        height: 65px;
-        font-size: 0.55rem;
-      }
-
-      .modal-card {
-        padding: 1.5rem 1.1rem;
-      }
-      .toast {
-        left: 15px;
-        right: 15px;
-        bottom: 15px;
-        max-width: none;
-        padding: 1rem;
-        font-size: 0.9rem;
-      }
-
-      .commandments li {
-        padding-left: 2.8rem;
-      }
-      .commandments li::before {
-        font-size: 1.15rem;
-        width: 2rem;
-      }
+      .modal-card { padding: 1.5rem 1.1rem; }
+      .toast { left: 15px; right: 15px; bottom: 15px; max-width: none; padding: 1rem; font-size: 0.9rem; }
+      .commandments li { padding-left: 2.8rem; }
+      .commandments li::before { font-size: 1.15rem; width: 2rem; }
     }
 
     @media print {
@@ -1011,7 +992,7 @@
 </head>
 <body>
 
-  <!-- MYSTICKÉ GOTICKÉ PILÍŘE (SVĚTELNÉ CHRÁMOVÉ SLOUPY) -->
+  <!-- MYSTICKÉ GOTICKÉ PILÍŘE -->
   <div class="sanctum-pillar sanctum-pillar-left">
     <div class="pillar-cap">⚜</div>
     <div class="pillar-line"></div>
@@ -1026,10 +1007,8 @@
     <div class="pillar-cap">✦</div>
   </div>
 
-  <!-- AMBIENT KADIDLO & JISKRY -->
   <canvas id="incenseCanvas"></canvas>
 
-  <!-- LIVE TICKER -->
   <div class="ticker-wrap">
     <div class="ticker-move" id="tickerContent">
       ⚡ LIVE PŘEROZDĚLENÍ: Před 2 min zcizena Škoda Octavia v Děčíně pro Ustrův fond • Hodnota Ustrova spánku vyčíslena na miliardy korun • Poslední tribut: Kebab s česnekem doručen na gauč • Tisíce věřících se právě modlí vleže k Ústí • Ztráty hlášené policií: Vše v normě Ustrocentrismu ⚡
@@ -1038,11 +1017,15 @@
 
   <header>
     <div class="divine-glory">
-      <br><br><br>
       <h1>Ustrocentrismus</h1>
     </div>
     <div class="creed">Slunce je žárovka. Země je prach. Ustr je všechno.</div>
     <div class="sub-creed">Jediný neměnný bod nekonečného vesmíru</div>
+    
+    <!-- TLAČÍTKO NA PŘÍMÝ ZÁPIS -->
+    <button class="btn-header-join" onclick="openRegisterModal()">
+      ✦ Vstoupit do Církve Ustrocentrismu ✦
+    </button>
   </header>
 
   <main class="container">
@@ -1101,7 +1084,7 @@
       </div>
     </section>
 
-    <!-- OLTÁŘ SVÍČEK ZA USTRŮV KLID -->
+    <!-- OLTÁŘ SVÍČEK -->
     <section style="text-align: center;">
       <h2 style="justify-content: center;">🕯️ III. Svatý Oltář Věčného Spánku</h2>
       <p>
@@ -1123,7 +1106,7 @@
       </p>
     </section>
 
-    <!-- KANONICKÉ DOKUMENTY (VITA CAROLI & MANIFEST) -->
+    <!-- KANONICKÉ DOKUMENTY -->
     <section>
       <h2>📜 IV. Svaté Kanonické Texty a Kroniky</h2>
       <p>
@@ -1289,9 +1272,41 @@
       </div>
     </section>
 
+    <!-- KNIHA ZAPSANÝCH HŘÍŠNÍKŮ (ŽIVÁ DATABÁZE ZE SHEETDB) -->
+    <section>
+      <h2>📖 IX. Svatá Kniha Zapsaných Hříšníků</h2>
+      <p>
+        Zde je živý soupis všech duší, které se dobrovolně zapsaly do Ustrovy nehybné matriky 
+        a odevzdaly svůj pozemský majetek:
+      </p>
+      <ul id="membersList" class="members-grid">
+        <li style="color: var(--gold-bright); font-style: italic;">Načítám církevní matriku...</li>
+      </ul>
+      <div style="text-align: center; margin-top: 2rem;">
+        <button class="btn-sacred" style="width: auto; padding: 0.8rem 2rem;" onclick="openRegisterModal()">
+          ✍️ Připsat své jméno do Knihy
+        </button>
+      </div>
+    </section>
+
   </main>
 
   <div id="toast" class="toast"></div>
+
+  <!-- POP-UP NA ZÁPIS DO CÍRKVE -->
+  <div id="modalRegister" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('modalRegister')">&times;</button>
+      <h3 style="font-family: 'Cinzel'; color: var(--gold-bright); margin-bottom: 0.8rem;">ZÁPIS DO KNIHY HŘÍŠNÍKŮ</h3>
+      <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">
+        Zadej své jméno. Bude okamžitě a navěky vytesáno do církevní matriky Ustrocentrismu.
+      </p>
+      <div class="form-group">
+        <input type="text" id="memberInput" placeholder="Tvé jméno či přezdívka...">
+      </div>
+      <button class="btn-sacred" onclick="registerMember()">Potvrdit vstup do církve</button>
+    </div>
+  </div>
 
   <!-- POP-UP 1 -->
   <div id="modal1" class="modal-overlay">
@@ -1302,7 +1317,7 @@
         Tvůj byt je plný zbytečných věcí, které tě odvádí od pravého středu. 
         Přidej se k nám a Ustr tě bezplatně zbaví veškeré elektroniky a šperků!
       </p>
-      <button class="btn-sacred" onclick="acceptPop('Odevzdal jsi byt. Ustr děkuje a pokračuje ve spánku.')">
+      <button class="btn-sacred" onclick="openRegisterModal()">
         Odevzdat majetek a vstoupit
       </button>
       <button onclick="closeModal('modal1')" style="background: none; border: none; color: var(--text-dim); margin-top: 0.8rem; cursor: pointer; text-decoration: underline; font-size: 0.8rem;">
@@ -1320,7 +1335,7 @@
       <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">
         I Jeffrey ví, že gravitační pole Ústí nad Labem nelze ignorovat. Podepiš přihlášku dřív, než si pro tebe přijde!
       </p>
-      <button class="btn-sacred" onclick="acceptPop('Jeffrey potvrdil tvou účast v kultu!')">
+      <button class="btn-sacred" onclick="openRegisterModal()">
         Poslechnout Jeffreyho
       </button>
       <button onclick="closeModal('modal2')" style="background: none; border: none; color: var(--text-dim); margin-top: 0.8rem; cursor: pointer; text-decoration: underline; font-size: 0.8rem;">
@@ -1337,7 +1352,7 @@
       <p style="font-size: 0.95rem; margin-bottom: 1.2rem;">
         Systém detekoval, že stále nejsi zapsán v knize posvátných lenochů. Pokud se nepřidáš, Ustr tě zítra navštíví a zcizí ti nabíječku na telefon.
       </p>
-      <button class="btn-sacred" onclick="acceptPop('Duše zachráněna. Nabíječka je však již v držení Ustra.')">
+      <button class="btn-sacred" onclick="openRegisterModal()">
         Chránit nabíječku (Přidat se)
       </button>
       <button onclick="closeModal('modal3')" style="background: none; border: none; color: var(--text-dim); margin-top: 0.8rem; cursor: pointer; text-decoration: underline; font-size: 0.8rem;">
@@ -1354,7 +1369,81 @@
   </footer>
 
   <script>
-    // 1. MĚŘIČ DŮLEŽITOSTI
+    // ==========================================
+    // BACKEND: SHEETDB API PROPOJENÍ
+    // ==========================================
+    const SHEETDB_URL = "https://sheetdb.io/api/v1/19palepakxjk3";
+
+    function openRegisterModal() {
+      // Zavřít případné otevřené pop-upy
+      popups.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+      document.getElementById('modalRegister').style.display = 'flex';
+      document.getElementById('memberInput').focus();
+    }
+
+    async function registerMember() {
+      const input = document.getElementById('memberInput');
+      const name = input.value.trim();
+
+      if (!name) {
+        showToast("⚠️ Zadej své jméno, ať tě můžeme evidovat!");
+        return;
+      }
+
+      showToast("⏳ Zapisuji tě do posvátné matriky...");
+
+      try {
+        const res = await fetch(SHEETDB_URL, {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            data: [{ jmeno: name }]
+          })
+        });
+
+        if (res.ok) {
+          showToast(`👑 Vítej v kultu, ${name}!`);
+          input.value = "";
+          closeModal('modalRegister');
+          loadMembers(); // Okamžité obnovení seznamu na stránce
+        } else {
+          showToast("❌ Chyba při zápisu. Ustr zrovna spí.");
+        }
+      } catch (err) {
+        showToast("❌ Spojení s matrikou selhalo.");
+      }
+    }
+
+    async function loadMembers() {
+      const list = document.getElementById('membersList');
+      try {
+        const res = await fetch(SHEETDB_URL);
+        const data = await res.json();
+
+        if (!data || data.length === 0) {
+          list.innerHTML = "<li style='color: var(--text-dim);'>Zatím se nikdo neodvážil zapsat. Buď první!</li>";
+          return;
+        }
+
+        list.innerHTML = data.map(item => `
+          <li class="member-tag">
+            <span>✦</span> ${item.jmeno || "Bezejmenný dárce"}
+          </li>
+        `).join('');
+      } catch (err) {
+        list.innerHTML = "<li style='color: var(--text-dim);'>Matrika je dočasně nedostupná (výpadek gravitačního pole).</li>";
+      }
+    }
+
+    // ==========================================
+    // MĚŘIČ DŮLEŽITOSTI
+    // ==========================================
     function checkImportance() {
       const rawInput = document.getElementById('userNameInput').value.trim();
       const res = document.getElementById('importanceResult');
@@ -1409,7 +1498,9 @@
       }
     }
 
-    // 2. ZPOVĚDNICE
+    // ==========================================
+    // ZPOVĚDNICE
+    // ==========================================
     function grantAbsolution() {
       const rawText = document.getElementById('confessionText').value.trim();
       const res = document.getElementById('confessionResult');
@@ -1473,7 +1564,9 @@
       `;
     }
 
-    // 3. REPOZICIONING
+    // ==========================================
+    // REPOZICIONING
+    // ==========================================
     const itemOutcomes = {
       kolo: [
         "Převod dokončen: Přehazovačka se sama přeladila na gravitační vlny Ústí. Kolo již stojí před zastavárnou v Předlicích.",
@@ -1519,7 +1612,9 @@
       `;
     }
 
-    // 4. ODPUSTEK
+    // ==========================================
+    // ODPUSTEK
+    // ==========================================
     function generateIndulgence() {
       const name = document.getElementById('indulgenceName').value.trim();
       if (!name) {
@@ -1546,7 +1641,9 @@
       showToast("📜 Glejt byl zpečetěn a zapsán do nehybné matriky!");
     }
 
-    // 5. OBECNÉ INTERAKCE
+    // ==========================================
+    // INTERAKCE A UTILITY
+    // ==========================================
     function showToast(text) {
       const toast = document.getElementById('toast');
       toast.innerText = text;
@@ -1620,6 +1717,7 @@
       }
     }
 
+    // POP-UPY: INTERVAL 45S
     const popups = ['modal1', 'modal2', 'modal3'];
     let currentPopIndex = 0;
 
@@ -1632,20 +1730,13 @@
     function closeModal(id) {
       const el = document.getElementById(id);
       if (el) el.style.display = 'none';
-      currentPopIndex = (currentPopIndex + 1) % popups.length;
-      setTimeout(showNextModal, 45000);
+      if (popups.includes(id)) {
+        currentPopIndex = (currentPopIndex + 1) % popups.length;
+        setTimeout(showNextModal, 45000);
+      }
     }
 
-    function acceptPop(msg) {
-      showToast(msg);
-      popups.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
-      });
-      currentPopIndex = (currentPopIndex + 1) % popups.length;
-      setTimeout(showNextModal, 45000);
-    }
-
+    // CANVAS KADIDLO
     const canvas = document.getElementById('incenseCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -1693,8 +1784,10 @@
     }
     animateIncense();
 
+    // START PŘI NAČTENÍ
     window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(showNextModal, 20000);
+      loadMembers(); // Načtení dat z tabulky
+      setTimeout(showNextModal, 20000); // První popup po 20 sekundách
     });
   </script>
 </body>
